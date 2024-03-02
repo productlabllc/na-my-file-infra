@@ -1,0 +1,1551 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model AssignedScenarios {
+  AssignedScenariosID Int  @id(map: "PK_AssignedScenarios") @default(autoincrement())
+  CompanyID           Int?
+  ScenarioID          Int?
+  DisplayOrder        Int?
+}
+
+model tbl_Login {
+  UserID     Int     @id(map: "PK_Table_1") @default(autoincrement())
+  Username   String? @db.VarChar(50)
+  Pwd        String? @db.VarChar(50)
+  Email      String? @db.VarChar(50)
+  Nickname   String? @db.VarChar(50)
+  Status     String? @db.VarChar(50)
+  Skype      String? @db.VarChar(50)
+  AccessCode Int?
+  CompanyID  Int?
+}
+
+model tblAccessTypes {
+  AccessID  Int     @id(map: "PK_tblAccessTypes") @default(autoincrement())
+  LevelType String? @db.VarChar(50)
+  LevelCode Int?
+}
+
+model tblCompany {
+  CompanyID   Int     @id(map: "PK_tblCompany") @default(autoincrement())
+  CompanyName String? @db.VarChar(50)
+  Login       String? @db.VarChar(50)
+}
+
+model tblCompanyID_1_QuestionAnswers {
+  ScenarioQuestionAnswersID Int       @id(map: "PK_tblCompanyID_1_QuestionAnswers") @default(autoincrement())
+  CompanyID                 Int?
+  Gender                    Int?
+  Age                       Int?
+  YearsAtCompany            Int?
+  Management                Int?
+  Scenario_1_1              String?   @db.VarChar(50)
+  Scenario_1_2              String?   @db.VarChar(50)
+  Scenario_2_1              String?   @db.VarChar(50)
+  Scenario_3_1              String?   @db.VarChar(50)
+  Scenario_4_1              String?   @db.VarChar(50)
+  Scenario_5_1              String?   @db.VarChar(50)
+  Scenario_5_2              String?   @db.VarChar(50)
+  Scenario_6_1              String?   @db.VarChar(50)
+  Scenario_7_1              String?   @db.VarChar(50)
+  Scenario_8_1              String?   @db.VarChar(50)
+  Scenario_8_2              String?   @db.VarChar(50)
+  Scenario_9_1              String?   @db.VarChar(50)
+  Scenario_10_1             String?   @db.VarChar(50)
+  Scenario_11_1             String?   @db.VarChar(50)
+  Scenario_12_1             String?   @db.VarChar(50)
+  Scenario_13_1             String?   @db.VarChar(50)
+  Scenario_14_1             String?   @db.VarChar(50)
+  Scenario_15_1             String?   @db.VarChar(50)
+  Scenario_16_1             String?   @db.VarChar(50)
+  Scenario_17_1             String?   @db.VarChar(50)
+  Scenario_18_1             String?   @db.VarChar(50)
+  Scenario_19_1             String?   @db.VarChar(50)
+  Scenario_20_1             String?   @db.VarChar(50)
+  Scenario_21_1             String?   @db.VarChar(50)
+  Scenario_22_1             String?   @db.VarChar(50)
+  Scenario_23_1             String?   @db.VarChar(50)
+  Scenario_23_2             String?   @db.VarChar(50)
+  Scenario_24_1             String?   @db.VarChar(50)
+  Scenario_25_1             String?   @db.VarChar(50)
+  Scenario_1_1_C            String?   @db.VarChar(50)
+  Scenario_1_2_C            String?   @db.VarChar(50)
+  Scenario_2_1_C            String?   @db.VarChar(50)
+  Scenario_3_1_C            String?   @db.VarChar(50)
+  Scenario_4_1_C            String?   @db.VarChar(50)
+  Scenario_5_1_C            String?   @db.VarChar(50)
+  Scenario_5_2_C            String?   @db.VarChar(50)
+  Scenario_6_1_C            String?   @db.VarChar(50)
+  Scenario_7_1_C            String?   @db.VarChar(50)
+  Scenario_8_1_C            String?   @db.VarChar(50)
+  Scenario_8_2_C            String?   @db.VarChar(50)
+  Scenario_9_1_C            String?   @db.VarChar(50)
+  Scenario_10_1_C           String?   @db.VarChar(50)
+  Scenario_11_1_C           String?   @db.VarChar(50)
+  Scenario_12_1_C           String?   @db.VarChar(50)
+  Scenario_13_1_C           String?   @db.VarChar(50)
+  Scenario_14_1_C           String?   @db.VarChar(50)
+  Scenario_15_1_C           String?   @db.VarChar(50)
+  Scenario_16_1_C           String?   @db.VarChar(50)
+  Scenario_17_1_C           String?   @db.VarChar(50)
+  Scenario_18_1_C           String?   @db.VarChar(50)
+  Scenario_19_1_C           String?   @db.VarChar(50)
+  Scenario_20_1_C           String?   @db.VarChar(50)
+  Scenario_21_1_C           String?   @db.VarChar(50)
+  Scenario_22_1_C           String?   @db.VarChar(50)
+  Scenario_23_1_C           String?   @db.VarChar(50)
+  Scenario_23_2_C           String?   @db.VarChar(50)
+  Scenario_24_1_C           String?   @db.VarChar(50)
+  Scenario_25_1_C           String?   @db.VarChar(50)
+  Scenario_1_1_S            String?   @db.VarChar(50)
+  Scenario_1_2_S            String?   @db.VarChar(50)
+  Scenario_2_1_S            String?   @db.VarChar(50)
+  Scenario_3_1_S            String?   @db.VarChar(50)
+  Scenario_4_1_S            String?   @db.VarChar(50)
+  Scenario_5_1_S            String?   @db.VarChar(50)
+  Scenario_5_2_S            String?   @db.VarChar(50)
+  Scenario_6_1_S            String?   @db.VarChar(50)
+  Scenario_7_1_S            String?   @db.VarChar(50)
+  Scenario_8_1_S            String?   @db.VarChar(50)
+  Scenario_8_2_S            String?   @db.VarChar(50)
+  Scenario_9_1_S            String?   @db.VarChar(50)
+  Scenario_10_1_S           String?   @db.VarChar(50)
+  Scenario_11_1_S           String?   @db.VarChar(50)
+  Scenario_12_1_S           String?   @db.VarChar(50)
+  Scenario_13_1_S           String?   @db.VarChar(50)
+  Scenario_14_1_S           String?   @db.VarChar(50)
+  Scenario_15_1_S           String?   @db.VarChar(50)
+  Scenario_16_1_S           String?   @db.VarChar(50)
+  Scenario_17_1_S           String?   @db.VarChar(50)
+  Scenario_18_1_S           String?   @db.VarChar(50)
+  Scenario_19_1_S           String?   @db.VarChar(50)
+  Scenario_20_1_S           String?   @db.VarChar(50)
+  Scenario_21_1_S           String?   @db.VarChar(50)
+  Scenario_22_1_S           String?   @db.VarChar(50)
+  Scenario_23_1_S           String?   @db.VarChar(50)
+  Scenario_23_2_S           String?   @db.VarChar(50)
+  Scenario_24_1_S           String?   @db.VarChar(50)
+  Scenario_25_1_S           String?   @db.VarChar(50)
+  Scenario_1_1_Score        String?   @db.VarChar(50)
+  Scenario_1_2_Score        String?   @db.VarChar(50)
+  Scenario_2_1_Score        String?   @db.VarChar(50)
+  Scenario_3_1_Score        String?   @db.VarChar(50)
+  Scenario_4_1_Score        String?   @db.VarChar(50)
+  Scenario_5_1_Score        String?   @db.VarChar(50)
+  Scenario_5_2_Score        String?   @db.VarChar(50)
+  Scenario_6_1_Score        String?   @db.VarChar(50)
+  Scenario_7_1_Score        String?   @db.VarChar(50)
+  Scenario_8_1_Score        String?   @db.VarChar(50)
+  Scenario_8_2_Score        String?   @db.VarChar(50)
+  Scenario_9_1_Score        String?   @db.VarChar(50)
+  Scenario_10_1_Score       String?   @db.VarChar(50)
+  Scenario_11_1_Score       String?   @db.VarChar(50)
+  Scenario_12_1_Score       String?   @db.VarChar(50)
+  Scenario_13_1_Score       String?   @db.VarChar(50)
+  Scenario_14_1_Score       String?   @db.VarChar(50)
+  Scenario_15_1_Score       String?   @db.VarChar(50)
+  Scenario_16_1_Score       String?   @db.VarChar(50)
+  Scenario_17_1_Score       String?   @db.VarChar(50)
+  Scenario_18_1_Score       String?   @db.VarChar(50)
+  Scenario_19_1_Score       String?   @db.VarChar(50)
+  Scenario_20_1_Score       String?   @db.VarChar(50)
+  Scenario_21_1_Score       String?   @db.VarChar(50)
+  Scenario_22_1_Score       String?   @db.VarChar(50)
+  Scenario_23_1_Score       String?   @db.VarChar(50)
+  Scenario_23_2_Score       String?   @db.VarChar(50)
+  Scenario_24_1_Score       String?   @db.VarChar(50)
+  Scenario_25_1_Score       String?   @db.VarChar(50)
+  TimeStampStarted          DateTime? @db.DateTime
+  TimeStampCompleted        DateTime? @db.DateTime
+  SHQScore                  Int?
+  Scenario_1_TimeStamp      DateTime? @db.DateTime
+  Scenario_2_TimeStamp      DateTime? @db.DateTime
+  Scenario_3_TimeStamp      DateTime? @db.DateTime
+  Scenario_4_TimeStamp      DateTime? @db.DateTime
+  Scenario_5_TimeStamp      DateTime? @db.DateTime
+  Scenario_6_TimeStamp      DateTime? @db.DateTime
+  Scenario_7_TimeStamp      DateTime? @db.DateTime
+  Scenario_8_TimeStamp      DateTime? @db.DateTime
+  Scenario_9_TimeStamp      DateTime? @db.DateTime
+  Scenario_10_TimeStamp     DateTime? @db.DateTime
+  Scenario_11_TimeStamp     DateTime? @db.DateTime
+  Scenario_12_TimeStamp     DateTime? @db.DateTime
+  Scenario_13_TimeStamp     DateTime? @db.DateTime
+  Scenario_14_TimeStamp     DateTime? @db.DateTime
+  Scenario_15_TimeStamp     DateTime? @db.DateTime
+  Scenario_16_TimeStamp     DateTime? @db.DateTime
+  Scenario_17_TimeStamp     DateTime? @db.DateTime
+  Scenario_18_TimeStamp     DateTime? @db.DateTime
+  Scenario_19_TimeStamp     DateTime? @db.DateTime
+  Scenario_20_TimeStamp     DateTime? @db.DateTime
+  Scenario_21_TimeStamp     DateTime? @db.DateTime
+  Scenario_22_TimeStamp     DateTime? @db.DateTime
+  Scenario_23_TimeStamp     DateTime? @db.DateTime
+  Scenario_24_TimeStamp     DateTime? @db.DateTime
+  Scenario_25_TimeStamp     DateTime? @db.DateTime
+  Scenario_1_Seriousness    Int?
+  Scenario_2_Seriousness    Int?
+  Scenario_3_Seriousness    Int?
+  Scenario_4_Seriousness    Int?
+  Scenario_5_Seriousness    Int?
+  Scenario_6_Seriousness    Int?
+  Scenario_7_Seriousness    Int?
+  Scenario_8_Seriousness    Int?
+  Scenario_9_Seriousness    Int?
+  Scenario_10_Seriousness   Int?
+  Scenario_11_Seriousness   Int?
+  Scenario_12_Seriousness   Int?
+  Scenario_13_Seriousness   Int?
+  Scenario_14_Seriousness   Int?
+  Scenario_15_Seriousness   Int?
+  Scenario_16_Seriousness   Int?
+  Scenario_17_Seriousness   Int?
+  Scenario_18_Seriousness   Int?
+  Scenario_19_Seriousness   Int?
+  Scenario_20_Seriousness   Int?
+  Scenario_21_Seriousness   Int?
+  Scenario_22_Seriousness   Int?
+  Scenario_23_Seriousness   Int?
+  Scenario_24_Seriousness   Int?
+  Scenario_25_Seriousness   Int?
+  Scenario_1_Legal          Int?
+  Scenario_2_Legal          Int?
+  Scenario_3_Legal          Int?
+  Scenario_4_Legal          Int?
+  Scenario_5_Legal          Int?
+  Scenario_6_Legal          Int?
+  Scenario_7_Legal          Int?
+  Scenario_8_Legal          Int?
+  Scenario_9_Legal          Int?
+  Scenario_10_Legal         Int?
+  Scenario_11_Legal         Int?
+  Scenario_12_Legal         Int?
+  Scenario_13_Legal         Int?
+  Scenario_14_Legal         Int?
+  Scenario_15_Legal         Int?
+  Scenario_16_Legal         Int?
+  Scenario_17_Legal         Int?
+  Scenario_18_Legal         Int?
+  Scenario_19_Legal         Int?
+  Scenario_20_Legal         Int?
+  Scenario_21_Legal         Int?
+  Scenario_22_Legal         Int?
+  Scenario_23_Legal         Int?
+  Scenario_24_Legal         Int?
+  Scenario_25_Legal         Int?
+  Forename                  String?   @db.VarChar(255)
+  Surname                   String?   @db.VarChar(255)
+  Email                     String?   @db.VarChar(255)
+  OptIn                     String?   @db.VarChar(50)
+  SHQNormalise              String?   @db.VarChar(255)
+}
+
+model tblCompanyID_2_QuestionAnswers {
+  ScenarioQuestionAnswersID Int       @id(map: "PK_tblCompanyID_2_QuestionAnswers") @default(autoincrement())
+  CompanyID                 Int?
+  Gender                    Int?
+  Age                       Int?
+  YearsAtCompany            Int?
+  Management                Int?
+  Scenario_1_1              String?   @db.VarChar(50)
+  Scenario_1_2              String?   @db.VarChar(50)
+  Scenario_2_1              String?   @db.VarChar(50)
+  Scenario_3_1              String?   @db.VarChar(50)
+  Scenario_4_1              String?   @db.VarChar(50)
+  Scenario_5_1              String?   @db.VarChar(50)
+  Scenario_5_2              String?   @db.VarChar(50)
+  Scenario_6_1              String?   @db.VarChar(50)
+  Scenario_7_1              String?   @db.VarChar(50)
+  Scenario_8_1              String?   @db.VarChar(50)
+  Scenario_8_2              String?   @db.VarChar(50)
+  Scenario_9_1              String?   @db.VarChar(50)
+  Scenario_10_1             String?   @db.VarChar(50)
+  Scenario_11_1             String?   @db.VarChar(50)
+  Scenario_12_1             String?   @db.VarChar(50)
+  Scenario_13_1             String?   @db.VarChar(50)
+  Scenario_14_1             String?   @db.VarChar(50)
+  Scenario_15_1             String?   @db.VarChar(50)
+  Scenario_16_1             String?   @db.VarChar(50)
+  Scenario_17_1             String?   @db.VarChar(50)
+  Scenario_18_1             String?   @db.VarChar(50)
+  Scenario_19_1             String?   @db.VarChar(50)
+  Scenario_20_1             String?   @db.VarChar(50)
+  Scenario_21_1             String?   @db.VarChar(50)
+  Scenario_22_1             String?   @db.VarChar(50)
+  Scenario_23_1             String?   @db.VarChar(50)
+  Scenario_23_2             String?   @db.VarChar(50)
+  Scenario_24_1             String?   @db.VarChar(50)
+  Scenario_25_1             String?   @db.VarChar(50)
+  Scenario_1_1_C            String?   @db.VarChar(50)
+  Scenario_1_2_C            String?   @db.VarChar(50)
+  Scenario_2_1_C            String?   @db.VarChar(50)
+  Scenario_3_1_C            String?   @db.VarChar(50)
+  Scenario_4_1_C            String?   @db.VarChar(50)
+  Scenario_5_1_C            String?   @db.VarChar(50)
+  Scenario_5_2_C            String?   @db.VarChar(50)
+  Scenario_6_1_C            String?   @db.VarChar(50)
+  Scenario_7_1_C            String?   @db.VarChar(50)
+  Scenario_8_1_C            String?   @db.VarChar(50)
+  Scenario_8_2_C            String?   @db.VarChar(50)
+  Scenario_9_1_C            String?   @db.VarChar(50)
+  Scenario_10_1_C           String?   @db.VarChar(50)
+  Scenario_11_1_C           String?   @db.VarChar(50)
+  Scenario_12_1_C           String?   @db.VarChar(50)
+  Scenario_13_1_C           String?   @db.VarChar(50)
+  Scenario_14_1_C           String?   @db.VarChar(50)
+  Scenario_15_1_C           String?   @db.VarChar(50)
+  Scenario_16_1_C           String?   @db.VarChar(50)
+  Scenario_17_1_C           String?   @db.VarChar(50)
+  Scenario_18_1_C           String?   @db.VarChar(50)
+  Scenario_19_1_C           String?   @db.VarChar(50)
+  Scenario_20_1_C           String?   @db.VarChar(50)
+  Scenario_21_1_C           String?   @db.VarChar(50)
+  Scenario_22_1_C           String?   @db.VarChar(50)
+  Scenario_23_1_C           String?   @db.VarChar(50)
+  Scenario_23_2_C           String?   @db.VarChar(50)
+  Scenario_24_1_C           String?   @db.VarChar(50)
+  Scenario_25_1_C           String?   @db.VarChar(50)
+  Scenario_1_1_S            String?   @db.VarChar(50)
+  Scenario_1_2_S            String?   @db.VarChar(50)
+  Scenario_2_1_S            String?   @db.VarChar(50)
+  Scenario_3_1_S            String?   @db.VarChar(50)
+  Scenario_4_1_S            String?   @db.VarChar(50)
+  Scenario_5_1_S            String?   @db.VarChar(50)
+  Scenario_5_2_S            String?   @db.VarChar(50)
+  Scenario_6_1_S            String?   @db.VarChar(50)
+  Scenario_7_1_S            String?   @db.VarChar(50)
+  Scenario_8_1_S            String?   @db.VarChar(50)
+  Scenario_8_2_S            String?   @db.VarChar(50)
+  Scenario_9_1_S            String?   @db.VarChar(50)
+  Scenario_10_1_S           String?   @db.VarChar(50)
+  Scenario_11_1_S           String?   @db.VarChar(50)
+  Scenario_12_1_S           String?   @db.VarChar(50)
+  Scenario_13_1_S           String?   @db.VarChar(50)
+  Scenario_14_1_S           String?   @db.VarChar(50)
+  Scenario_15_1_S           String?   @db.VarChar(50)
+  Scenario_16_1_S           String?   @db.VarChar(50)
+  Scenario_17_1_S           String?   @db.VarChar(50)
+  Scenario_18_1_S           String?   @db.VarChar(50)
+  Scenario_19_1_S           String?   @db.VarChar(50)
+  Scenario_20_1_S           String?   @db.VarChar(50)
+  Scenario_21_1_S           String?   @db.VarChar(50)
+  Scenario_22_1_S           String?   @db.VarChar(50)
+  Scenario_23_1_S           String?   @db.VarChar(50)
+  Scenario_23_2_S           String?   @db.VarChar(50)
+  Scenario_24_1_S           String?   @db.VarChar(50)
+  Scenario_25_1_S           String?   @db.VarChar(50)
+  Scenario_1_1_Score        String?   @db.VarChar(50)
+  Scenario_1_2_Score        String?   @db.VarChar(50)
+  Scenario_2_1_Score        String?   @db.VarChar(50)
+  Scenario_3_1_Score        String?   @db.VarChar(50)
+  Scenario_4_1_Score        String?   @db.VarChar(50)
+  Scenario_5_1_Score        String?   @db.VarChar(50)
+  Scenario_5_2_Score        String?   @db.VarChar(50)
+  Scenario_6_1_Score        String?   @db.VarChar(50)
+  Scenario_7_1_Score        String?   @db.VarChar(50)
+  Scenario_8_1_Score        String?   @db.VarChar(50)
+  Scenario_8_2_Score        String?   @db.VarChar(50)
+  Scenario_9_1_Score        String?   @db.VarChar(50)
+  Scenario_10_1_Score       String?   @db.VarChar(50)
+  Scenario_11_1_Score       String?   @db.VarChar(50)
+  Scenario_12_1_Score       String?   @db.VarChar(50)
+  Scenario_13_1_Score       String?   @db.VarChar(50)
+  Scenario_14_1_Score       String?   @db.VarChar(50)
+  Scenario_15_1_Score       String?   @db.VarChar(50)
+  Scenario_16_1_Score       String?   @db.VarChar(50)
+  Scenario_17_1_Score       String?   @db.VarChar(50)
+  Scenario_18_1_Score       String?   @db.VarChar(50)
+  Scenario_19_1_Score       String?   @db.VarChar(50)
+  Scenario_20_1_Score       String?   @db.VarChar(50)
+  Scenario_21_1_Score       String?   @db.VarChar(50)
+  Scenario_22_1_Score       String?   @db.VarChar(50)
+  Scenario_23_1_Score       String?   @db.VarChar(50)
+  Scenario_23_2_Score       String?   @db.VarChar(50)
+  Scenario_24_1_Score       String?   @db.VarChar(50)
+  Scenario_25_1_Score       String?   @db.VarChar(50)
+  TimeStampStarted          DateTime? @db.DateTime
+  TimeStampCompleted        DateTime? @db.DateTime
+  SHQScore                  Int?
+  Scenario_1_TimeStamp      DateTime? @db.DateTime
+  Scenario_2_TimeStamp      DateTime? @db.DateTime
+  Scenario_3_TimeStamp      DateTime? @db.DateTime
+  Scenario_4_TimeStamp      DateTime? @db.DateTime
+  Scenario_5_TimeStamp      DateTime? @db.DateTime
+  Scenario_6_TimeStamp      DateTime? @db.DateTime
+  Scenario_7_TimeStamp      DateTime? @db.DateTime
+  Scenario_8_TimeStamp      DateTime? @db.DateTime
+  Scenario_9_TimeStamp      DateTime? @db.DateTime
+  Scenario_10_TimeStamp     DateTime? @db.DateTime
+  Scenario_11_TimeStamp     DateTime? @db.DateTime
+  Scenario_12_TimeStamp     DateTime? @db.DateTime
+  Scenario_13_TimeStamp     DateTime? @db.DateTime
+  Scenario_14_TimeStamp     DateTime? @db.DateTime
+  Scenario_15_TimeStamp     DateTime? @db.DateTime
+  Scenario_16_TimeStamp     DateTime? @db.DateTime
+  Scenario_17_TimeStamp     DateTime? @db.DateTime
+  Scenario_18_TimeStamp     DateTime? @db.DateTime
+  Scenario_19_TimeStamp     DateTime? @db.DateTime
+  Scenario_20_TimeStamp     DateTime? @db.DateTime
+  Scenario_21_TimeStamp     DateTime? @db.DateTime
+  Scenario_22_TimeStamp     DateTime? @db.DateTime
+  Scenario_23_TimeStamp     DateTime? @db.DateTime
+  Scenario_24_TimeStamp     DateTime? @db.DateTime
+  Scenario_25_TimeStamp     DateTime? @db.DateTime
+  Scenario_1_Seriousness    Int?
+  Scenario_2_Seriousness    Int?
+  Scenario_3_Seriousness    Int?
+  Scenario_4_Seriousness    Int?
+  Scenario_5_Seriousness    Int?
+  Scenario_6_Seriousness    Int?
+  Scenario_7_Seriousness    Int?
+  Scenario_8_Seriousness    Int?
+  Scenario_9_Seriousness    Int?
+  Scenario_10_Seriousness   Int?
+  Scenario_11_Seriousness   Int?
+  Scenario_12_Seriousness   Int?
+  Scenario_13_Seriousness   Int?
+  Scenario_14_Seriousness   Int?
+  Scenario_15_Seriousness   Int?
+  Scenario_16_Seriousness   Int?
+  Scenario_17_Seriousness   Int?
+  Scenario_18_Seriousness   Int?
+  Scenario_19_Seriousness   Int?
+  Scenario_20_Seriousness   Int?
+  Scenario_21_Seriousness   Int?
+  Scenario_22_Seriousness   Int?
+  Scenario_23_Seriousness   Int?
+  Scenario_24_Seriousness   Int?
+  Scenario_25_Seriousness   Int?
+  Scenario_1_Legal          Int?
+  Scenario_2_Legal          Int?
+  Scenario_3_Legal          Int?
+  Scenario_4_Legal          Int?
+  Scenario_5_Legal          Int?
+  Scenario_6_Legal          Int?
+  Scenario_7_Legal          Int?
+  Scenario_8_Legal          Int?
+  Scenario_9_Legal          Int?
+  Scenario_10_Legal         Int?
+  Scenario_11_Legal         Int?
+  Scenario_12_Legal         Int?
+  Scenario_13_Legal         Int?
+  Scenario_14_Legal         Int?
+  Scenario_15_Legal         Int?
+  Scenario_16_Legal         Int?
+  Scenario_17_Legal         Int?
+  Scenario_18_Legal         Int?
+  Scenario_19_Legal         Int?
+  Scenario_20_Legal         Int?
+  Scenario_21_Legal         Int?
+  Scenario_22_Legal         Int?
+  Scenario_23_Legal         Int?
+  Scenario_24_Legal         Int?
+  Scenario_25_Legal         Int?
+  Forename                  String?   @db.VarChar(255)
+  Surname                   String?   @db.VarChar(255)
+  Email                     String?   @db.VarChar(255)
+  OptIn                     String?   @db.VarChar(50)
+  SHQNormalise              String?   @db.VarChar(255)
+}
+
+model tblCompanyID_3_QuestionAnswers {
+  ScenarioQuestionAnswersID Int       @id(map: "PK_tblCompanyID_3_QuestionAnswers") @default(autoincrement())
+  CompanyID                 Int?
+  Gender                    Int?
+  Age                       Int?
+  YearsAtCompany            Int?
+  Management                Int?
+  Scenario_1_1              String?   @db.VarChar(50)
+  Scenario_1_2              String?   @db.VarChar(50)
+  Scenario_2_1              String?   @db.VarChar(50)
+  Scenario_3_1              String?   @db.VarChar(50)
+  Scenario_4_1              String?   @db.VarChar(50)
+  Scenario_5_1              String?   @db.VarChar(50)
+  Scenario_5_2              String?   @db.VarChar(50)
+  Scenario_6_1              String?   @db.VarChar(50)
+  Scenario_7_1              String?   @db.VarChar(50)
+  Scenario_8_1              String?   @db.VarChar(50)
+  Scenario_8_2              String?   @db.VarChar(50)
+  Scenario_9_1              String?   @db.VarChar(50)
+  Scenario_10_1             String?   @db.VarChar(50)
+  Scenario_11_1             String?   @db.VarChar(50)
+  Scenario_12_1             String?   @db.VarChar(50)
+  Scenario_13_1             String?   @db.VarChar(50)
+  Scenario_14_1             String?   @db.VarChar(50)
+  Scenario_15_1             String?   @db.VarChar(50)
+  Scenario_16_1             String?   @db.VarChar(50)
+  Scenario_17_1             String?   @db.VarChar(50)
+  Scenario_18_1             String?   @db.VarChar(50)
+  Scenario_19_1             String?   @db.VarChar(50)
+  Scenario_20_1             String?   @db.VarChar(50)
+  Scenario_21_1             String?   @db.VarChar(50)
+  Scenario_22_1             String?   @db.VarChar(50)
+  Scenario_23_1             String?   @db.VarChar(50)
+  Scenario_23_2             String?   @db.VarChar(50)
+  Scenario_24_1             String?   @db.VarChar(50)
+  Scenario_25_1             String?   @db.VarChar(50)
+  Scenario_1_1_C            String?   @db.VarChar(50)
+  Scenario_1_2_C            String?   @db.VarChar(50)
+  Scenario_2_1_C            String?   @db.VarChar(50)
+  Scenario_3_1_C            String?   @db.VarChar(50)
+  Scenario_4_1_C            String?   @db.VarChar(50)
+  Scenario_5_1_C            String?   @db.VarChar(50)
+  Scenario_5_2_C            String?   @db.VarChar(50)
+  Scenario_6_1_C            String?   @db.VarChar(50)
+  Scenario_7_1_C            String?   @db.VarChar(50)
+  Scenario_8_1_C            String?   @db.VarChar(50)
+  Scenario_8_2_C            String?   @db.VarChar(50)
+  Scenario_9_1_C            String?   @db.VarChar(50)
+  Scenario_10_1_C           String?   @db.VarChar(50)
+  Scenario_11_1_C           String?   @db.VarChar(50)
+  Scenario_12_1_C           String?   @db.VarChar(50)
+  Scenario_13_1_C           String?   @db.VarChar(50)
+  Scenario_14_1_C           String?   @db.VarChar(50)
+  Scenario_15_1_C           String?   @db.VarChar(50)
+  Scenario_16_1_C           String?   @db.VarChar(50)
+  Scenario_17_1_C           String?   @db.VarChar(50)
+  Scenario_18_1_C           String?   @db.VarChar(50)
+  Scenario_19_1_C           String?   @db.VarChar(50)
+  Scenario_20_1_C           String?   @db.VarChar(50)
+  Scenario_21_1_C           String?   @db.VarChar(50)
+  Scenario_22_1_C           String?   @db.VarChar(50)
+  Scenario_23_1_C           String?   @db.VarChar(50)
+  Scenario_23_2_C           String?   @db.VarChar(50)
+  Scenario_24_1_C           String?   @db.VarChar(50)
+  Scenario_25_1_C           String?   @db.VarChar(50)
+  Scenario_1_1_S            String?   @db.VarChar(50)
+  Scenario_1_2_S            String?   @db.VarChar(50)
+  Scenario_2_1_S            String?   @db.VarChar(50)
+  Scenario_3_1_S            String?   @db.VarChar(50)
+  Scenario_4_1_S            String?   @db.VarChar(50)
+  Scenario_5_1_S            String?   @db.VarChar(50)
+  Scenario_5_2_S            String?   @db.VarChar(50)
+  Scenario_6_1_S            String?   @db.VarChar(50)
+  Scenario_7_1_S            String?   @db.VarChar(50)
+  Scenario_8_1_S            String?   @db.VarChar(50)
+  Scenario_8_2_S            String?   @db.VarChar(50)
+  Scenario_9_1_S            String?   @db.VarChar(50)
+  Scenario_10_1_S           String?   @db.VarChar(50)
+  Scenario_11_1_S           String?   @db.VarChar(50)
+  Scenario_12_1_S           String?   @db.VarChar(50)
+  Scenario_13_1_S           String?   @db.VarChar(50)
+  Scenario_14_1_S           String?   @db.VarChar(50)
+  Scenario_15_1_S           String?   @db.VarChar(50)
+  Scenario_16_1_S           String?   @db.VarChar(50)
+  Scenario_17_1_S           String?   @db.VarChar(50)
+  Scenario_18_1_S           String?   @db.VarChar(50)
+  Scenario_19_1_S           String?   @db.VarChar(50)
+  Scenario_20_1_S           String?   @db.VarChar(50)
+  Scenario_21_1_S           String?   @db.VarChar(50)
+  Scenario_22_1_S           String?   @db.VarChar(50)
+  Scenario_23_1_S           String?   @db.VarChar(50)
+  Scenario_23_2_S           String?   @db.VarChar(50)
+  Scenario_24_1_S           String?   @db.VarChar(50)
+  Scenario_25_1_S           String?   @db.VarChar(50)
+  Scenario_1_1_Score        String?   @db.VarChar(50)
+  Scenario_1_2_Score        String?   @db.VarChar(50)
+  Scenario_2_1_Score        String?   @db.VarChar(50)
+  Scenario_3_1_Score        String?   @db.VarChar(50)
+  Scenario_4_1_Score        String?   @db.VarChar(50)
+  Scenario_5_1_Score        String?   @db.VarChar(50)
+  Scenario_5_2_Score        String?   @db.VarChar(50)
+  Scenario_6_1_Score        String?   @db.VarChar(50)
+  Scenario_7_1_Score        String?   @db.VarChar(50)
+  Scenario_8_1_Score        String?   @db.VarChar(50)
+  Scenario_8_2_Score        String?   @db.VarChar(50)
+  Scenario_9_1_Score        String?   @db.VarChar(50)
+  Scenario_10_1_Score       String?   @db.VarChar(50)
+  Scenario_11_1_Score       String?   @db.VarChar(50)
+  Scenario_12_1_Score       String?   @db.VarChar(50)
+  Scenario_13_1_Score       String?   @db.VarChar(50)
+  Scenario_14_1_Score       String?   @db.VarChar(50)
+  Scenario_15_1_Score       String?   @db.VarChar(50)
+  Scenario_16_1_Score       String?   @db.VarChar(50)
+  Scenario_17_1_Score       String?   @db.VarChar(50)
+  Scenario_18_1_Score       String?   @db.VarChar(50)
+  Scenario_19_1_Score       String?   @db.VarChar(50)
+  Scenario_20_1_Score       String?   @db.VarChar(50)
+  Scenario_21_1_Score       String?   @db.VarChar(50)
+  Scenario_22_1_Score       String?   @db.VarChar(50)
+  Scenario_23_1_Score       String?   @db.VarChar(50)
+  Scenario_23_2_Score       String?   @db.VarChar(50)
+  Scenario_24_1_Score       String?   @db.VarChar(50)
+  Scenario_25_1_Score       String?   @db.VarChar(50)
+  TimeStampStarted          DateTime? @db.DateTime
+  TimeStampCompleted        DateTime? @db.DateTime
+  SHQScore                  Int?
+  Scenario_1_TimeStamp      DateTime? @db.DateTime
+  Scenario_2_TimeStamp      DateTime? @db.DateTime
+  Scenario_3_TimeStamp      DateTime? @db.DateTime
+  Scenario_4_TimeStamp      DateTime? @db.DateTime
+  Scenario_5_TimeStamp      DateTime? @db.DateTime
+  Scenario_6_TimeStamp      DateTime? @db.DateTime
+  Scenario_7_TimeStamp      DateTime? @db.DateTime
+  Scenario_8_TimeStamp      DateTime? @db.DateTime
+  Scenario_9_TimeStamp      DateTime? @db.DateTime
+  Scenario_10_TimeStamp     DateTime? @db.DateTime
+  Scenario_11_TimeStamp     DateTime? @db.DateTime
+  Scenario_12_TimeStamp     DateTime? @db.DateTime
+  Scenario_13_TimeStamp     DateTime? @db.DateTime
+  Scenario_14_TimeStamp     DateTime? @db.DateTime
+  Scenario_15_TimeStamp     DateTime? @db.DateTime
+  Scenario_16_TimeStamp     DateTime? @db.DateTime
+  Scenario_17_TimeStamp     DateTime? @db.DateTime
+  Scenario_18_TimeStamp     DateTime? @db.DateTime
+  Scenario_19_TimeStamp     DateTime? @db.DateTime
+  Scenario_20_TimeStamp     DateTime? @db.DateTime
+  Scenario_21_TimeStamp     DateTime? @db.DateTime
+  Scenario_22_TimeStamp     DateTime? @db.DateTime
+  Scenario_23_TimeStamp     DateTime? @db.DateTime
+  Scenario_24_TimeStamp     DateTime? @db.DateTime
+  Scenario_25_TimeStamp     DateTime? @db.DateTime
+  Scenario_1_Seriousness    Int?
+  Scenario_2_Seriousness    Int?
+  Scenario_3_Seriousness    Int?
+  Scenario_4_Seriousness    Int?
+  Scenario_5_Seriousness    Int?
+  Scenario_6_Seriousness    Int?
+  Scenario_7_Seriousness    Int?
+  Scenario_8_Seriousness    Int?
+  Scenario_9_Seriousness    Int?
+  Scenario_10_Seriousness   Int?
+  Scenario_11_Seriousness   Int?
+  Scenario_12_Seriousness   Int?
+  Scenario_13_Seriousness   Int?
+  Scenario_14_Seriousness   Int?
+  Scenario_15_Seriousness   Int?
+  Scenario_16_Seriousness   Int?
+  Scenario_17_Seriousness   Int?
+  Scenario_18_Seriousness   Int?
+  Scenario_19_Seriousness   Int?
+  Scenario_20_Seriousness   Int?
+  Scenario_21_Seriousness   Int?
+  Scenario_22_Seriousness   Int?
+  Scenario_23_Seriousness   Int?
+  Scenario_24_Seriousness   Int?
+  Scenario_25_Seriousness   Int?
+  Scenario_1_Legal          Int?
+  Scenario_2_Legal          Int?
+  Scenario_3_Legal          Int?
+  Scenario_4_Legal          Int?
+  Scenario_5_Legal          Int?
+  Scenario_6_Legal          Int?
+  Scenario_7_Legal          Int?
+  Scenario_8_Legal          Int?
+  Scenario_9_Legal          Int?
+  Scenario_10_Legal         Int?
+  Scenario_11_Legal         Int?
+  Scenario_12_Legal         Int?
+  Scenario_13_Legal         Int?
+  Scenario_14_Legal         Int?
+  Scenario_15_Legal         Int?
+  Scenario_16_Legal         Int?
+  Scenario_17_Legal         Int?
+  Scenario_18_Legal         Int?
+  Scenario_19_Legal         Int?
+  Scenario_20_Legal         Int?
+  Scenario_21_Legal         Int?
+  Scenario_22_Legal         Int?
+  Scenario_23_Legal         Int?
+  Scenario_24_Legal         Int?
+  Scenario_25_Legal         Int?
+  Forename                  String?   @db.VarChar(255)
+  Surname                   String?   @db.VarChar(255)
+  Email                     String?   @db.VarChar(255)
+  OptIn                     String?   @db.VarChar(50)
+  SHQNormalise              String?   @db.VarChar(255)
+}
+
+model tblCompanyID_4_QuestionAnswers {
+  ScenarioQuestionAnswersID Int       @id(map: "PK_tblCompanyID_4_QuestionAnswers") @default(autoincrement())
+  CompanyID                 Int?
+  Gender                    Int?
+  Age                       Int?
+  YearsAtCompany            Int?
+  Management                Int?
+  Scenario_1_1              String?   @db.VarChar(50)
+  Scenario_1_2              String?   @db.VarChar(50)
+  Scenario_2_1              String?   @db.VarChar(50)
+  Scenario_3_1              String?   @db.VarChar(50)
+  Scenario_4_1              String?   @db.VarChar(50)
+  Scenario_5_1              String?   @db.VarChar(50)
+  Scenario_5_2              String?   @db.VarChar(50)
+  Scenario_6_1              String?   @db.VarChar(50)
+  Scenario_7_1              String?   @db.VarChar(50)
+  Scenario_8_1              String?   @db.VarChar(50)
+  Scenario_8_2              String?   @db.VarChar(50)
+  Scenario_9_1              String?   @db.VarChar(50)
+  Scenario_10_1             String?   @db.VarChar(50)
+  Scenario_11_1             String?   @db.VarChar(50)
+  Scenario_12_1             String?   @db.VarChar(50)
+  Scenario_13_1             String?   @db.VarChar(50)
+  Scenario_14_1             String?   @db.VarChar(50)
+  Scenario_15_1             String?   @db.VarChar(50)
+  Scenario_16_1             String?   @db.VarChar(50)
+  Scenario_17_1             String?   @db.VarChar(50)
+  Scenario_18_1             String?   @db.VarChar(50)
+  Scenario_19_1             String?   @db.VarChar(50)
+  Scenario_20_1             String?   @db.VarChar(50)
+  Scenario_21_1             String?   @db.VarChar(50)
+  Scenario_22_1             String?   @db.VarChar(50)
+  Scenario_23_1             String?   @db.VarChar(50)
+  Scenario_23_2             String?   @db.VarChar(50)
+  Scenario_24_1             String?   @db.VarChar(50)
+  Scenario_25_1             String?   @db.VarChar(50)
+  Scenario_1_1_C            String?   @db.VarChar(50)
+  Scenario_1_2_C            String?   @db.VarChar(50)
+  Scenario_2_1_C            String?   @db.VarChar(50)
+  Scenario_3_1_C            String?   @db.VarChar(50)
+  Scenario_4_1_C            String?   @db.VarChar(50)
+  Scenario_5_1_C            String?   @db.VarChar(50)
+  Scenario_5_2_C            String?   @db.VarChar(50)
+  Scenario_6_1_C            String?   @db.VarChar(50)
+  Scenario_7_1_C            String?   @db.VarChar(50)
+  Scenario_8_1_C            String?   @db.VarChar(50)
+  Scenario_8_2_C            String?   @db.VarChar(50)
+  Scenario_9_1_C            String?   @db.VarChar(50)
+  Scenario_10_1_C           String?   @db.VarChar(50)
+  Scenario_11_1_C           String?   @db.VarChar(50)
+  Scenario_12_1_C           String?   @db.VarChar(50)
+  Scenario_13_1_C           String?   @db.VarChar(50)
+  Scenario_14_1_C           String?   @db.VarChar(50)
+  Scenario_15_1_C           String?   @db.VarChar(50)
+  Scenario_16_1_C           String?   @db.VarChar(50)
+  Scenario_17_1_C           String?   @db.VarChar(50)
+  Scenario_18_1_C           String?   @db.VarChar(50)
+  Scenario_19_1_C           String?   @db.VarChar(50)
+  Scenario_20_1_C           String?   @db.VarChar(50)
+  Scenario_21_1_C           String?   @db.VarChar(50)
+  Scenario_22_1_C           String?   @db.VarChar(50)
+  Scenario_23_1_C           String?   @db.VarChar(50)
+  Scenario_23_2_C           String?   @db.VarChar(50)
+  Scenario_24_1_C           String?   @db.VarChar(50)
+  Scenario_25_1_C           String?   @db.VarChar(50)
+  Scenario_1_1_S            String?   @db.VarChar(50)
+  Scenario_1_2_S            String?   @db.VarChar(50)
+  Scenario_2_1_S            String?   @db.VarChar(50)
+  Scenario_3_1_S            String?   @db.VarChar(50)
+  Scenario_4_1_S            String?   @db.VarChar(50)
+  Scenario_5_1_S            String?   @db.VarChar(50)
+  Scenario_5_2_S            String?   @db.VarChar(50)
+  Scenario_6_1_S            String?   @db.VarChar(50)
+  Scenario_7_1_S            String?   @db.VarChar(50)
+  Scenario_8_1_S            String?   @db.VarChar(50)
+  Scenario_8_2_S            String?   @db.VarChar(50)
+  Scenario_9_1_S            String?   @db.VarChar(50)
+  Scenario_10_1_S           String?   @db.VarChar(50)
+  Scenario_11_1_S           String?   @db.VarChar(50)
+  Scenario_12_1_S           String?   @db.VarChar(50)
+  Scenario_13_1_S           String?   @db.VarChar(50)
+  Scenario_14_1_S           String?   @db.VarChar(50)
+  Scenario_15_1_S           String?   @db.VarChar(50)
+  Scenario_16_1_S           String?   @db.VarChar(50)
+  Scenario_17_1_S           String?   @db.VarChar(50)
+  Scenario_18_1_S           String?   @db.VarChar(50)
+  Scenario_19_1_S           String?   @db.VarChar(50)
+  Scenario_20_1_S           String?   @db.VarChar(50)
+  Scenario_21_1_S           String?   @db.VarChar(50)
+  Scenario_22_1_S           String?   @db.VarChar(50)
+  Scenario_23_1_S           String?   @db.VarChar(50)
+  Scenario_23_2_S           String?   @db.VarChar(50)
+  Scenario_24_1_S           String?   @db.VarChar(50)
+  Scenario_25_1_S           String?   @db.VarChar(50)
+  Scenario_1_1_Score        String?   @db.VarChar(50)
+  Scenario_1_2_Score        String?   @db.VarChar(50)
+  Scenario_2_1_Score        String?   @db.VarChar(50)
+  Scenario_3_1_Score        String?   @db.VarChar(50)
+  Scenario_4_1_Score        String?   @db.VarChar(50)
+  Scenario_5_1_Score        String?   @db.VarChar(50)
+  Scenario_5_2_Score        String?   @db.VarChar(50)
+  Scenario_6_1_Score        String?   @db.VarChar(50)
+  Scenario_7_1_Score        String?   @db.VarChar(50)
+  Scenario_8_1_Score        String?   @db.VarChar(50)
+  Scenario_8_2_Score        String?   @db.VarChar(50)
+  Scenario_9_1_Score        String?   @db.VarChar(50)
+  Scenario_10_1_Score       String?   @db.VarChar(50)
+  Scenario_11_1_Score       String?   @db.VarChar(50)
+  Scenario_12_1_Score       String?   @db.VarChar(50)
+  Scenario_13_1_Score       String?   @db.VarChar(50)
+  Scenario_14_1_Score       String?   @db.VarChar(50)
+  Scenario_15_1_Score       String?   @db.VarChar(50)
+  Scenario_16_1_Score       String?   @db.VarChar(50)
+  Scenario_17_1_Score       String?   @db.VarChar(50)
+  Scenario_18_1_Score       String?   @db.VarChar(50)
+  Scenario_19_1_Score       String?   @db.VarChar(50)
+  Scenario_20_1_Score       String?   @db.VarChar(50)
+  Scenario_21_1_Score       String?   @db.VarChar(50)
+  Scenario_22_1_Score       String?   @db.VarChar(50)
+  Scenario_23_1_Score       String?   @db.VarChar(50)
+  Scenario_23_2_Score       String?   @db.VarChar(50)
+  Scenario_24_1_Score       String?   @db.VarChar(50)
+  Scenario_25_1_Score       String?   @db.VarChar(50)
+  TimeStampStarted          DateTime? @db.DateTime
+  TimeStampCompleted        DateTime? @db.DateTime
+  SHQScore                  Int?
+  Scenario_1_TimeStamp      DateTime? @db.DateTime
+  Scenario_2_TimeStamp      DateTime? @db.DateTime
+  Scenario_3_TimeStamp      DateTime? @db.DateTime
+  Scenario_4_TimeStamp      DateTime? @db.DateTime
+  Scenario_5_TimeStamp      DateTime? @db.DateTime
+  Scenario_6_TimeStamp      DateTime? @db.DateTime
+  Scenario_7_TimeStamp      DateTime? @db.DateTime
+  Scenario_8_TimeStamp      DateTime? @db.DateTime
+  Scenario_9_TimeStamp      DateTime? @db.DateTime
+  Scenario_10_TimeStamp     DateTime? @db.DateTime
+  Scenario_11_TimeStamp     DateTime? @db.DateTime
+  Scenario_12_TimeStamp     DateTime? @db.DateTime
+  Scenario_13_TimeStamp     DateTime? @db.DateTime
+  Scenario_14_TimeStamp     DateTime? @db.DateTime
+  Scenario_15_TimeStamp     DateTime? @db.DateTime
+  Scenario_16_TimeStamp     DateTime? @db.DateTime
+  Scenario_17_TimeStamp     DateTime? @db.DateTime
+  Scenario_18_TimeStamp     DateTime? @db.DateTime
+  Scenario_19_TimeStamp     DateTime? @db.DateTime
+  Scenario_20_TimeStamp     DateTime? @db.DateTime
+  Scenario_21_TimeStamp     DateTime? @db.DateTime
+  Scenario_22_TimeStamp     DateTime? @db.DateTime
+  Scenario_23_TimeStamp     DateTime? @db.DateTime
+  Scenario_24_TimeStamp     DateTime? @db.DateTime
+  Scenario_25_TimeStamp     DateTime? @db.DateTime
+  Scenario_1_Seriousness    Int?
+  Scenario_2_Seriousness    Int?
+  Scenario_3_Seriousness    Int?
+  Scenario_4_Seriousness    Int?
+  Scenario_5_Seriousness    Int?
+  Scenario_6_Seriousness    Int?
+  Scenario_7_Seriousness    Int?
+  Scenario_8_Seriousness    Int?
+  Scenario_9_Seriousness    Int?
+  Scenario_10_Seriousness   Int?
+  Scenario_11_Seriousness   Int?
+  Scenario_12_Seriousness   Int?
+  Scenario_13_Seriousness   Int?
+  Scenario_14_Seriousness   Int?
+  Scenario_15_Seriousness   Int?
+  Scenario_16_Seriousness   Int?
+  Scenario_17_Seriousness   Int?
+  Scenario_18_Seriousness   Int?
+  Scenario_19_Seriousness   Int?
+  Scenario_20_Seriousness   Int?
+  Scenario_21_Seriousness   Int?
+  Scenario_22_Seriousness   Int?
+  Scenario_23_Seriousness   Int?
+  Scenario_24_Seriousness   Int?
+  Scenario_25_Seriousness   Int?
+  Scenario_1_Legal          Int?
+  Scenario_2_Legal          Int?
+  Scenario_3_Legal          Int?
+  Scenario_4_Legal          Int?
+  Scenario_5_Legal          Int?
+  Scenario_6_Legal          Int?
+  Scenario_7_Legal          Int?
+  Scenario_8_Legal          Int?
+  Scenario_9_Legal          Int?
+  Scenario_10_Legal         Int?
+  Scenario_11_Legal         Int?
+  Scenario_12_Legal         Int?
+  Scenario_13_Legal         Int?
+  Scenario_14_Legal         Int?
+  Scenario_15_Legal         Int?
+  Scenario_16_Legal         Int?
+  Scenario_17_Legal         Int?
+  Scenario_18_Legal         Int?
+  Scenario_19_Legal         Int?
+  Scenario_20_Legal         Int?
+  Scenario_21_Legal         Int?
+  Scenario_22_Legal         Int?
+  Scenario_23_Legal         Int?
+  Scenario_24_Legal         Int?
+  Scenario_25_Legal         Int?
+  Forename                  String?   @db.VarChar(255)
+  Surname                   String?   @db.VarChar(255)
+  Email                     String?   @db.VarChar(255)
+  OptIn                     String?   @db.VarChar(50)
+  SHQNormalise              String?   @db.VarChar(255)
+}
+
+model tblCompanyID_5_QuestionAnswers {
+  ScenarioQuestionAnswersID Int       @id(map: "PK_tblCompanyID_5_QuestionAnswers") @default(autoincrement())
+  CompanyID                 Int?
+  Gender                    Int?
+  Age                       Int?
+  YearsAtCompany            Int?
+  Management                Int?
+  Scenario_1_1              String?   @db.VarChar(50)
+  Scenario_1_2              String?   @db.VarChar(50)
+  Scenario_2_1              String?   @db.VarChar(50)
+  Scenario_3_1              String?   @db.VarChar(50)
+  Scenario_4_1              String?   @db.VarChar(50)
+  Scenario_5_1              String?   @db.VarChar(50)
+  Scenario_5_2              String?   @db.VarChar(50)
+  Scenario_6_1              String?   @db.VarChar(50)
+  Scenario_7_1              String?   @db.VarChar(50)
+  Scenario_8_1              String?   @db.VarChar(50)
+  Scenario_8_2              String?   @db.VarChar(50)
+  Scenario_9_1              String?   @db.VarChar(50)
+  Scenario_10_1             String?   @db.VarChar(50)
+  Scenario_11_1             String?   @db.VarChar(50)
+  Scenario_12_1             String?   @db.VarChar(50)
+  Scenario_13_1             String?   @db.VarChar(50)
+  Scenario_14_1             String?   @db.VarChar(50)
+  Scenario_15_1             String?   @db.VarChar(50)
+  Scenario_16_1             String?   @db.VarChar(50)
+  Scenario_17_1             String?   @db.VarChar(50)
+  Scenario_18_1             String?   @db.VarChar(50)
+  Scenario_19_1             String?   @db.VarChar(50)
+  Scenario_20_1             String?   @db.VarChar(50)
+  Scenario_21_1             String?   @db.VarChar(50)
+  Scenario_22_1             String?   @db.VarChar(50)
+  Scenario_23_1             String?   @db.VarChar(50)
+  Scenario_23_2             String?   @db.VarChar(50)
+  Scenario_24_1             String?   @db.VarChar(50)
+  Scenario_25_1             String?   @db.VarChar(50)
+  Scenario_1_1_C            String?   @db.VarChar(50)
+  Scenario_1_2_C            String?   @db.VarChar(50)
+  Scenario_2_1_C            String?   @db.VarChar(50)
+  Scenario_3_1_C            String?   @db.VarChar(50)
+  Scenario_4_1_C            String?   @db.VarChar(50)
+  Scenario_5_1_C            String?   @db.VarChar(50)
+  Scenario_5_2_C            String?   @db.VarChar(50)
+  Scenario_6_1_C            String?   @db.VarChar(50)
+  Scenario_7_1_C            String?   @db.VarChar(50)
+  Scenario_8_1_C            String?   @db.VarChar(50)
+  Scenario_8_2_C            String?   @db.VarChar(50)
+  Scenario_9_1_C            String?   @db.VarChar(50)
+  Scenario_10_1_C           String?   @db.VarChar(50)
+  Scenario_11_1_C           String?   @db.VarChar(50)
+  Scenario_12_1_C           String?   @db.VarChar(50)
+  Scenario_13_1_C           String?   @db.VarChar(50)
+  Scenario_14_1_C           String?   @db.VarChar(50)
+  Scenario_15_1_C           String?   @db.VarChar(50)
+  Scenario_16_1_C           String?   @db.VarChar(50)
+  Scenario_17_1_C           String?   @db.VarChar(50)
+  Scenario_18_1_C           String?   @db.VarChar(50)
+  Scenario_19_1_C           String?   @db.VarChar(50)
+  Scenario_20_1_C           String?   @db.VarChar(50)
+  Scenario_21_1_C           String?   @db.VarChar(50)
+  Scenario_22_1_C           String?   @db.VarChar(50)
+  Scenario_23_1_C           String?   @db.VarChar(50)
+  Scenario_23_2_C           String?   @db.VarChar(50)
+  Scenario_24_1_C           String?   @db.VarChar(50)
+  Scenario_25_1_C           String?   @db.VarChar(50)
+  Scenario_1_1_S            String?   @db.VarChar(50)
+  Scenario_1_2_S            String?   @db.VarChar(50)
+  Scenario_2_1_S            String?   @db.VarChar(50)
+  Scenario_3_1_S            String?   @db.VarChar(50)
+  Scenario_4_1_S            String?   @db.VarChar(50)
+  Scenario_5_1_S            String?   @db.VarChar(50)
+  Scenario_5_2_S            String?   @db.VarChar(50)
+  Scenario_6_1_S            String?   @db.VarChar(50)
+  Scenario_7_1_S            String?   @db.VarChar(50)
+  Scenario_8_1_S            String?   @db.VarChar(50)
+  Scenario_8_2_S            String?   @db.VarChar(50)
+  Scenario_9_1_S            String?   @db.VarChar(50)
+  Scenario_10_1_S           String?   @db.VarChar(50)
+  Scenario_11_1_S           String?   @db.VarChar(50)
+  Scenario_12_1_S           String?   @db.VarChar(50)
+  Scenario_13_1_S           String?   @db.VarChar(50)
+  Scenario_14_1_S           String?   @db.VarChar(50)
+  Scenario_15_1_S           String?   @db.VarChar(50)
+  Scenario_16_1_S           String?   @db.VarChar(50)
+  Scenario_17_1_S           String?   @db.VarChar(50)
+  Scenario_18_1_S           String?   @db.VarChar(50)
+  Scenario_19_1_S           String?   @db.VarChar(50)
+  Scenario_20_1_S           String?   @db.VarChar(50)
+  Scenario_21_1_S           String?   @db.VarChar(50)
+  Scenario_22_1_S           String?   @db.VarChar(50)
+  Scenario_23_1_S           String?   @db.VarChar(50)
+  Scenario_23_2_S           String?   @db.VarChar(50)
+  Scenario_24_1_S           String?   @db.VarChar(50)
+  Scenario_25_1_S           String?   @db.VarChar(50)
+  Scenario_1_1_Score        String?   @db.VarChar(50)
+  Scenario_1_2_Score        String?   @db.VarChar(50)
+  Scenario_2_1_Score        String?   @db.VarChar(50)
+  Scenario_3_1_Score        String?   @db.VarChar(50)
+  Scenario_4_1_Score        String?   @db.VarChar(50)
+  Scenario_5_1_Score        String?   @db.VarChar(50)
+  Scenario_5_2_Score        String?   @db.VarChar(50)
+  Scenario_6_1_Score        String?   @db.VarChar(50)
+  Scenario_7_1_Score        String?   @db.VarChar(50)
+  Scenario_8_1_Score        String?   @db.VarChar(50)
+  Scenario_8_2_Score        String?   @db.VarChar(50)
+  Scenario_9_1_Score        String?   @db.VarChar(50)
+  Scenario_10_1_Score       String?   @db.VarChar(50)
+  Scenario_11_1_Score       String?   @db.VarChar(50)
+  Scenario_12_1_Score       String?   @db.VarChar(50)
+  Scenario_13_1_Score       String?   @db.VarChar(50)
+  Scenario_14_1_Score       String?   @db.VarChar(50)
+  Scenario_15_1_Score       String?   @db.VarChar(50)
+  Scenario_16_1_Score       String?   @db.VarChar(50)
+  Scenario_17_1_Score       String?   @db.VarChar(50)
+  Scenario_18_1_Score       String?   @db.VarChar(50)
+  Scenario_19_1_Score       String?   @db.VarChar(50)
+  Scenario_20_1_Score       String?   @db.VarChar(50)
+  Scenario_21_1_Score       String?   @db.VarChar(50)
+  Scenario_22_1_Score       String?   @db.VarChar(50)
+  Scenario_23_1_Score       String?   @db.VarChar(50)
+  Scenario_23_2_Score       String?   @db.VarChar(50)
+  Scenario_24_1_Score       String?   @db.VarChar(50)
+  Scenario_25_1_Score       String?   @db.VarChar(50)
+  TimeStampStarted          DateTime? @db.DateTime
+  TimeStampCompleted        DateTime? @db.DateTime
+  SHQScore                  Int?
+  Scenario_1_TimeStamp      DateTime? @db.DateTime
+  Scenario_2_TimeStamp      DateTime? @db.DateTime
+  Scenario_3_TimeStamp      DateTime? @db.DateTime
+  Scenario_4_TimeStamp      DateTime? @db.DateTime
+  Scenario_5_TimeStamp      DateTime? @db.DateTime
+  Scenario_6_TimeStamp      DateTime? @db.DateTime
+  Scenario_7_TimeStamp      DateTime? @db.DateTime
+  Scenario_8_TimeStamp      DateTime? @db.DateTime
+  Scenario_9_TimeStamp      DateTime? @db.DateTime
+  Scenario_10_TimeStamp     DateTime? @db.DateTime
+  Scenario_11_TimeStamp     DateTime? @db.DateTime
+  Scenario_12_TimeStamp     DateTime? @db.DateTime
+  Scenario_13_TimeStamp     DateTime? @db.DateTime
+  Scenario_14_TimeStamp     DateTime? @db.DateTime
+  Scenario_15_TimeStamp     DateTime? @db.DateTime
+  Scenario_16_TimeStamp     DateTime? @db.DateTime
+  Scenario_17_TimeStamp     DateTime? @db.DateTime
+  Scenario_18_TimeStamp     DateTime? @db.DateTime
+  Scenario_19_TimeStamp     DateTime? @db.DateTime
+  Scenario_20_TimeStamp     DateTime? @db.DateTime
+  Scenario_21_TimeStamp     DateTime? @db.DateTime
+  Scenario_22_TimeStamp     DateTime? @db.DateTime
+  Scenario_23_TimeStamp     DateTime? @db.DateTime
+  Scenario_24_TimeStamp     DateTime? @db.DateTime
+  Scenario_25_TimeStamp     DateTime? @db.DateTime
+  Scenario_1_Seriousness    Int?
+  Scenario_2_Seriousness    Int?
+  Scenario_3_Seriousness    Int?
+  Scenario_4_Seriousness    Int?
+  Scenario_5_Seriousness    Int?
+  Scenario_6_Seriousness    Int?
+  Scenario_7_Seriousness    Int?
+  Scenario_8_Seriousness    Int?
+  Scenario_9_Seriousness    Int?
+  Scenario_10_Seriousness   Int?
+  Scenario_11_Seriousness   Int?
+  Scenario_12_Seriousness   Int?
+  Scenario_13_Seriousness   Int?
+  Scenario_14_Seriousness   Int?
+  Scenario_15_Seriousness   Int?
+  Scenario_16_Seriousness   Int?
+  Scenario_17_Seriousness   Int?
+  Scenario_18_Seriousness   Int?
+  Scenario_19_Seriousness   Int?
+  Scenario_20_Seriousness   Int?
+  Scenario_21_Seriousness   Int?
+  Scenario_22_Seriousness   Int?
+  Scenario_23_Seriousness   Int?
+  Scenario_24_Seriousness   Int?
+  Scenario_25_Seriousness   Int?
+  Scenario_1_Legal          Int?
+  Scenario_2_Legal          Int?
+  Scenario_3_Legal          Int?
+  Scenario_4_Legal          Int?
+  Scenario_5_Legal          Int?
+  Scenario_6_Legal          Int?
+  Scenario_7_Legal          Int?
+  Scenario_8_Legal          Int?
+  Scenario_9_Legal          Int?
+  Scenario_10_Legal         Int?
+  Scenario_11_Legal         Int?
+  Scenario_12_Legal         Int?
+  Scenario_13_Legal         Int?
+  Scenario_14_Legal         Int?
+  Scenario_15_Legal         Int?
+  Scenario_16_Legal         Int?
+  Scenario_17_Legal         Int?
+  Scenario_18_Legal         Int?
+  Scenario_19_Legal         Int?
+  Scenario_20_Legal         Int?
+  Scenario_21_Legal         Int?
+  Scenario_22_Legal         Int?
+  Scenario_23_Legal         Int?
+  Scenario_24_Legal         Int?
+  Scenario_25_Legal         Int?
+  Forename                  String?   @db.VarChar(255)
+  Surname                   String?   @db.VarChar(255)
+  Email                     String?   @db.VarChar(255)
+  OptIn                     String?   @db.VarChar(50)
+  SHQNormalise              String?   @db.VarChar(255)
+}
+
+model tblCompanyID_6_QuestionAnswers {
+  ScenarioQuestionAnswersID Int       @id(map: "PK_tblCompanyID_6_QuestionAnswers") @default(autoincrement())
+  CompanyID                 Int?
+  Gender                    Int?
+  Age                       Int?
+  YearsAtCompany            Int?
+  Management                Int?
+  Scenario_1_1              String?   @db.VarChar(50)
+  Scenario_1_2              String?   @db.VarChar(50)
+  Scenario_2_1              String?   @db.VarChar(50)
+  Scenario_3_1              String?   @db.VarChar(50)
+  Scenario_4_1              String?   @db.VarChar(50)
+  Scenario_5_1              String?   @db.VarChar(50)
+  Scenario_5_2              String?   @db.VarChar(50)
+  Scenario_6_1              String?   @db.VarChar(50)
+  Scenario_7_1              String?   @db.VarChar(50)
+  Scenario_8_1              String?   @db.VarChar(50)
+  Scenario_8_2              String?   @db.VarChar(50)
+  Scenario_9_1              String?   @db.VarChar(50)
+  Scenario_10_1             String?   @db.VarChar(50)
+  Scenario_11_1             String?   @db.VarChar(50)
+  Scenario_12_1             String?   @db.VarChar(50)
+  Scenario_13_1             String?   @db.VarChar(50)
+  Scenario_14_1             String?   @db.VarChar(50)
+  Scenario_15_1             String?   @db.VarChar(50)
+  Scenario_16_1             String?   @db.VarChar(50)
+  Scenario_17_1             String?   @db.VarChar(50)
+  Scenario_18_1             String?   @db.VarChar(50)
+  Scenario_19_1             String?   @db.VarChar(50)
+  Scenario_20_1             String?   @db.VarChar(50)
+  Scenario_21_1             String?   @db.VarChar(50)
+  Scenario_22_1             String?   @db.VarChar(50)
+  Scenario_23_1             String?   @db.VarChar(50)
+  Scenario_23_2             String?   @db.VarChar(50)
+  Scenario_24_1             String?   @db.VarChar(50)
+  Scenario_25_1             String?   @db.VarChar(50)
+  Scenario_1_1_C            String?   @db.VarChar(50)
+  Scenario_1_2_C            String?   @db.VarChar(50)
+  Scenario_2_1_C            String?   @db.VarChar(50)
+  Scenario_3_1_C            String?   @db.VarChar(50)
+  Scenario_4_1_C            String?   @db.VarChar(50)
+  Scenario_5_1_C            String?   @db.VarChar(50)
+  Scenario_5_2_C            String?   @db.VarChar(50)
+  Scenario_6_1_C            String?   @db.VarChar(50)
+  Scenario_7_1_C            String?   @db.VarChar(50)
+  Scenario_8_1_C            String?   @db.VarChar(50)
+  Scenario_8_2_C            String?   @db.VarChar(50)
+  Scenario_9_1_C            String?   @db.VarChar(50)
+  Scenario_10_1_C           String?   @db.VarChar(50)
+  Scenario_11_1_C           String?   @db.VarChar(50)
+  Scenario_12_1_C           String?   @db.VarChar(50)
+  Scenario_13_1_C           String?   @db.VarChar(50)
+  Scenario_14_1_C           String?   @db.VarChar(50)
+  Scenario_15_1_C           String?   @db.VarChar(50)
+  Scenario_16_1_C           String?   @db.VarChar(50)
+  Scenario_17_1_C           String?   @db.VarChar(50)
+  Scenario_18_1_C           String?   @db.VarChar(50)
+  Scenario_19_1_C           String?   @db.VarChar(50)
+  Scenario_20_1_C           String?   @db.VarChar(50)
+  Scenario_21_1_C           String?   @db.VarChar(50)
+  Scenario_22_1_C           String?   @db.VarChar(50)
+  Scenario_23_1_C           String?   @db.VarChar(50)
+  Scenario_23_2_C           String?   @db.VarChar(50)
+  Scenario_24_1_C           String?   @db.VarChar(50)
+  Scenario_25_1_C           String?   @db.VarChar(50)
+  Scenario_1_1_S            String?   @db.VarChar(50)
+  Scenario_1_2_S            String?   @db.VarChar(50)
+  Scenario_2_1_S            String?   @db.VarChar(50)
+  Scenario_3_1_S            String?   @db.VarChar(50)
+  Scenario_4_1_S            String?   @db.VarChar(50)
+  Scenario_5_1_S            String?   @db.VarChar(50)
+  Scenario_5_2_S            String?   @db.VarChar(50)
+  Scenario_6_1_S            String?   @db.VarChar(50)
+  Scenario_7_1_S            String?   @db.VarChar(50)
+  Scenario_8_1_S            String?   @db.VarChar(50)
+  Scenario_8_2_S            String?   @db.VarChar(50)
+  Scenario_9_1_S            String?   @db.VarChar(50)
+  Scenario_10_1_S           String?   @db.VarChar(50)
+  Scenario_11_1_S           String?   @db.VarChar(50)
+  Scenario_12_1_S           String?   @db.VarChar(50)
+  Scenario_13_1_S           String?   @db.VarChar(50)
+  Scenario_14_1_S           String?   @db.VarChar(50)
+  Scenario_15_1_S           String?   @db.VarChar(50)
+  Scenario_16_1_S           String?   @db.VarChar(50)
+  Scenario_17_1_S           String?   @db.VarChar(50)
+  Scenario_18_1_S           String?   @db.VarChar(50)
+  Scenario_19_1_S           String?   @db.VarChar(50)
+  Scenario_20_1_S           String?   @db.VarChar(50)
+  Scenario_21_1_S           String?   @db.VarChar(50)
+  Scenario_22_1_S           String?   @db.VarChar(50)
+  Scenario_23_1_S           String?   @db.VarChar(50)
+  Scenario_23_2_S           String?   @db.VarChar(50)
+  Scenario_24_1_S           String?   @db.VarChar(50)
+  Scenario_25_1_S           String?   @db.VarChar(50)
+  Scenario_1_1_Score        String?   @db.VarChar(50)
+  Scenario_1_2_Score        String?   @db.VarChar(50)
+  Scenario_2_1_Score        String?   @db.VarChar(50)
+  Scenario_3_1_Score        String?   @db.VarChar(50)
+  Scenario_4_1_Score        String?   @db.VarChar(50)
+  Scenario_5_1_Score        String?   @db.VarChar(50)
+  Scenario_5_2_Score        String?   @db.VarChar(50)
+  Scenario_6_1_Score        String?   @db.VarChar(50)
+  Scenario_7_1_Score        String?   @db.VarChar(50)
+  Scenario_8_1_Score        String?   @db.VarChar(50)
+  Scenario_8_2_Score        String?   @db.VarChar(50)
+  Scenario_9_1_Score        String?   @db.VarChar(50)
+  Scenario_10_1_Score       String?   @db.VarChar(50)
+  Scenario_11_1_Score       String?   @db.VarChar(50)
+  Scenario_12_1_Score       String?   @db.VarChar(50)
+  Scenario_13_1_Score       String?   @db.VarChar(50)
+  Scenario_14_1_Score       String?   @db.VarChar(50)
+  Scenario_15_1_Score       String?   @db.VarChar(50)
+  Scenario_16_1_Score       String?   @db.VarChar(50)
+  Scenario_17_1_Score       String?   @db.VarChar(50)
+  Scenario_18_1_Score       String?   @db.VarChar(50)
+  Scenario_19_1_Score       String?   @db.VarChar(50)
+  Scenario_20_1_Score       String?   @db.VarChar(50)
+  Scenario_21_1_Score       String?   @db.VarChar(50)
+  Scenario_22_1_Score       String?   @db.VarChar(50)
+  Scenario_23_1_Score       String?   @db.VarChar(50)
+  Scenario_23_2_Score       String?   @db.VarChar(50)
+  Scenario_24_1_Score       String?   @db.VarChar(50)
+  Scenario_25_1_Score       String?   @db.VarChar(50)
+  TimeStampStarted          DateTime? @db.DateTime
+  TimeStampCompleted        DateTime? @db.DateTime
+  SHQScore                  Int?
+  Scenario_1_TimeStamp      DateTime? @db.DateTime
+  Scenario_2_TimeStamp      DateTime? @db.DateTime
+  Scenario_3_TimeStamp      DateTime? @db.DateTime
+  Scenario_4_TimeStamp      DateTime? @db.DateTime
+  Scenario_5_TimeStamp      DateTime? @db.DateTime
+  Scenario_6_TimeStamp      DateTime? @db.DateTime
+  Scenario_7_TimeStamp      DateTime? @db.DateTime
+  Scenario_8_TimeStamp      DateTime? @db.DateTime
+  Scenario_9_TimeStamp      DateTime? @db.DateTime
+  Scenario_10_TimeStamp     DateTime? @db.DateTime
+  Scenario_11_TimeStamp     DateTime? @db.DateTime
+  Scenario_12_TimeStamp     DateTime? @db.DateTime
+  Scenario_13_TimeStamp     DateTime? @db.DateTime
+  Scenario_14_TimeStamp     DateTime? @db.DateTime
+  Scenario_15_TimeStamp     DateTime? @db.DateTime
+  Scenario_16_TimeStamp     DateTime? @db.DateTime
+  Scenario_17_TimeStamp     DateTime? @db.DateTime
+  Scenario_18_TimeStamp     DateTime? @db.DateTime
+  Scenario_19_TimeStamp     DateTime? @db.DateTime
+  Scenario_20_TimeStamp     DateTime? @db.DateTime
+  Scenario_21_TimeStamp     DateTime? @db.DateTime
+  Scenario_22_TimeStamp     DateTime? @db.DateTime
+  Scenario_23_TimeStamp     DateTime? @db.DateTime
+  Scenario_24_TimeStamp     DateTime? @db.DateTime
+  Scenario_25_TimeStamp     DateTime? @db.DateTime
+  Scenario_1_Seriousness    Int?
+  Scenario_2_Seriousness    Int?
+  Scenario_3_Seriousness    Int?
+  Scenario_4_Seriousness    Int?
+  Scenario_5_Seriousness    Int?
+  Scenario_6_Seriousness    Int?
+  Scenario_7_Seriousness    Int?
+  Scenario_8_Seriousness    Int?
+  Scenario_9_Seriousness    Int?
+  Scenario_10_Seriousness   Int?
+  Scenario_11_Seriousness   Int?
+  Scenario_12_Seriousness   Int?
+  Scenario_13_Seriousness   Int?
+  Scenario_14_Seriousness   Int?
+  Scenario_15_Seriousness   Int?
+  Scenario_16_Seriousness   Int?
+  Scenario_17_Seriousness   Int?
+  Scenario_18_Seriousness   Int?
+  Scenario_19_Seriousness   Int?
+  Scenario_20_Seriousness   Int?
+  Scenario_21_Seriousness   Int?
+  Scenario_22_Seriousness   Int?
+  Scenario_23_Seriousness   Int?
+  Scenario_24_Seriousness   Int?
+  Scenario_25_Seriousness   Int?
+  Scenario_1_Legal          Int?
+  Scenario_2_Legal          Int?
+  Scenario_3_Legal          Int?
+  Scenario_4_Legal          Int?
+  Scenario_5_Legal          Int?
+  Scenario_6_Legal          Int?
+  Scenario_7_Legal          Int?
+  Scenario_8_Legal          Int?
+  Scenario_9_Legal          Int?
+  Scenario_10_Legal         Int?
+  Scenario_11_Legal         Int?
+  Scenario_12_Legal         Int?
+  Scenario_13_Legal         Int?
+  Scenario_14_Legal         Int?
+  Scenario_15_Legal         Int?
+  Scenario_16_Legal         Int?
+  Scenario_17_Legal         Int?
+  Scenario_18_Legal         Int?
+  Scenario_19_Legal         Int?
+  Scenario_20_Legal         Int?
+  Scenario_21_Legal         Int?
+  Scenario_22_Legal         Int?
+  Scenario_23_Legal         Int?
+  Scenario_24_Legal         Int?
+  Scenario_25_Legal         Int?
+  Forename                  String?   @db.VarChar(255)
+  Surname                   String?   @db.VarChar(255)
+  Email                     String?   @db.VarChar(255)
+  OptIn                     String?   @db.VarChar(50)
+  SHQNormalise              String?   @db.VarChar(255)
+}
+
+model tblGoldSignals_2100055956 {
+  SignalID        Int       @id(map: "PK_tblGoldSignals-2100055956") @default(autoincrement())
+  TradeID         Int?
+  Timestamp       DateTime? @db.DateTime
+  ActionCode      String?   @db.NVarChar(50)
+  LotSize         Decimal?  @db.Decimal(18, 4)
+  OrderNumber     String?   @db.Char(50)
+  TradeCompleted  DateTime? @db.DateTime
+  Client          String?   @db.NVarChar(50)
+  CloseTrade      DateTime? @db.DateTime
+  CloseCompleted  DateTime? @db.DateTime
+  OpenRate        Decimal?  @db.Decimal(18, 2)
+  CloseRate       Decimal?  @db.Decimal(18, 2)
+  ReportOpenRate  String?   @db.NVarChar(50)
+  ReportCloseRate String?   @db.NVarChar(50)
+  ErrorMessage    String?   @db.NVarChar(255)
+  Sequence        Int?
+
+  @@map("tblGoldSignals-2100055956")
+}
+
+model tblGoldSignals_2100056213 {
+  SignalID        Int       @id(map: "PK_tblGoldSignals-2100056213") @default(autoincrement())
+  TradeID         Int?
+  Timestamp       DateTime? @db.DateTime
+  ActionCode      String?   @db.VarChar(50)
+  LotSize         Decimal?  @db.Decimal(18, 4)
+  OrderNumber     String?   @db.VarChar(50)
+  TradeCompleted  DateTime? @db.DateTime
+  Client          String?   @db.VarChar(50)
+  CloseTrade      DateTime? @db.DateTime
+  CloseCompleted  DateTime? @db.DateTime
+  OpenRate        Decimal?  @db.Decimal(18, 2)
+  CloseRate       Decimal?  @db.Decimal(18, 2)
+  ReportOpenRate  String?   @db.VarChar(50)
+  ReportCloseRate String?   @db.VarChar(50)
+  ErrorMessage    String?   @db.VarChar(255)
+  Sequence        Int?
+
+  @@map("tblGoldSignals-2100056213")
+}
+
+model tblGoldSignals_2140245359 {
+  SignalID        Int       @id(map: "PK_tblGoldSignals-2140245359") @default(autoincrement())
+  TradeID         Int?
+  Timestamp       DateTime? @db.DateTime
+  ActionCode      String?   @db.NVarChar(50)
+  LotSize         Decimal?  @db.Decimal(18, 4)
+  OrderNumber     String?   @db.Char(50)
+  TradeCompleted  DateTime? @db.DateTime
+  Client          String?   @db.NVarChar(50)
+  CloseTrade      DateTime? @db.DateTime
+  CloseCompleted  DateTime? @db.DateTime
+  OpenRate        Decimal?  @db.Decimal(18, 2)
+  CloseRate       Decimal?  @db.Decimal(18, 2)
+  ReportOpenRate  String?   @db.NVarChar(50)
+  ReportCloseRate String?   @db.NVarChar(50)
+  ErrorMessage    String?   @db.NVarChar(255)
+  Sequence        Int?
+
+  @@map("tblGoldSignals-2140245359")
+}
+
+model tblGoldSignals_2145740655 {
+  SignalID        Int       @id(map: "PK_tblGoldSignals-2145740655") @default(autoincrement())
+  TradeID         Int?
+  Timestamp       DateTime? @db.DateTime
+  ActionCode      String?   @db.VarChar(50)
+  LotSize         Decimal?  @db.Decimal(18, 4)
+  OrderNumber     String?   @db.VarChar(50)
+  TradeCompleted  DateTime? @db.DateTime
+  Client          String?   @db.VarChar(50)
+  CloseTrade      DateTime? @db.DateTime
+  CloseCompleted  DateTime? @db.DateTime
+  OpenRate        Decimal?  @db.Decimal(18, 2)
+  CloseRate       Decimal?  @db.Decimal(18, 2)
+  ReportOpenRate  String?   @db.VarChar(50)
+  ReportCloseRate String?   @db.VarChar(50)
+  ErrorMessage    String?   @db.VarChar(255)
+  Sequence        Int?
+
+  @@map("tblGoldSignals-2145740655")
+}
+
+model tblIPN {
+  ipnID         Int       @id(map: "PK_tblIPN") @default(autoincrement())
+  theamount     String?   @db.VarChar(255)
+  validation    String?   @db.VarChar(255)
+  custom        String?   @db.VarChar(255)
+  dateimported  DateTime? @db.DateTime
+  thecurrency   String?   @db.VarChar(255)
+  thestatus     String?   @db.VarChar(255)
+  thereceiver   String?   @db.VarChar(255)
+  transactionid String?   @db.VarChar(255)
+  firstname     String?   @db.VarChar(255)
+  lastname      String?   @db.VarChar(255)
+  address1      String?   @db.VarChar(255)
+  city          String?   @db.VarChar(255)
+  county        String?   @db.VarChar(255)
+  postcode      String?   @db.VarChar(255)
+  country       String?   @db.VarChar(255)
+  itemname      String?   @db.VarChar(255)
+  itemnumber    String?   @db.VarChar(255)
+  payeremail    String?   @db.VarChar(255)
+  addressname   String?   @db.VarChar(255)
+  addressstatus String?   @db.VarChar(255)
+  ContestID     Int?
+  SoloAccount   String?   @db.VarChar(255)
+  Username      String?   @db.VarChar(255)
+  SentEmail     String?   @db.VarChar(50)
+  SentEmailDate DateTime? @db.DateTime
+}
+
+model tblLogins {
+  LoginID   Int     @id(map: "PK_tblLogins") @default(autoincrement())
+  CompanyID Int?
+  UserName  String? @db.VarChar(50)
+  LevelCode Int?
+  Password  String? @db.VarChar(255)
+}
+
+model tblName {
+  NameID          Int       @id(map: "PK_tblName") @default(autoincrement())
+  Username        String?   @db.VarChar(50)
+  Pair            String?   @db.VarChar(50)
+  Bid             String?   @db.VarChar(50)
+  Ask             String?   @db.VarChar(50)
+  TimeStamp       DateTime? @db.DateTime
+  SentToWebSocket DateTime? @db.DateTime
+}
+
+model tblOpenTradeAuditTrail {
+  AuditTrailID Int     @id(map: "PK_tblOpenTradeAuditTrail") @default(autoincrement())
+  Account      String? @db.VarChar(50)
+  Ticket       Int?
+  SignalID     String? @db.VarChar(50)
+}
+
+model tblSexualHarassementVulnerabilityScenarioQuestionAnswers {
+  ScenarioQuestionAnswersID Int       @id(map: "PK_tblSexualHarassementVulnerabilityScenarioQuestionAnswers") @default(autoincrement())
+  CompanyName               String?   @db.VarChar(255)
+  Gender                    String?   @db.VarChar(50)
+  Age                       String?   @db.VarChar(50)
+  YearsAtCompany            String?   @db.VarChar(50)
+  Management                String?   @db.VarChar(50)
+  Scenario_1_1              String?   @db.VarChar(50)
+  Scenario_1_2              String?   @db.VarChar(50)
+  Scenario_2_1              String?   @db.VarChar(50)
+  Scenario_3_1              String?   @db.VarChar(50)
+  Scenario_4_1              String?   @db.VarChar(50)
+  Scenario_5_1              String?   @db.VarChar(50)
+  Scenario_5_2              String?   @db.VarChar(50)
+  Scenario_6_1              String?   @db.VarChar(50)
+  Scenario_7_1              String?   @db.VarChar(50)
+  Scenario_8_1              String?   @db.VarChar(50)
+  Scenario_8_2              String?   @db.VarChar(50)
+  Scenario_9_1              String?   @db.VarChar(50)
+  Scenario_10_1             String?   @db.VarChar(50)
+  Scenario_11_1             String?   @db.VarChar(50)
+  Scenario_12_1             String?   @db.VarChar(50)
+  Scenario_13_1             String?   @db.VarChar(50)
+  Scenario_14_1             String?   @db.VarChar(50)
+  Scenario_15_1             String?   @db.VarChar(50)
+  Scenario_16_1             String?   @db.VarChar(50)
+  Scenario_17_1             String?   @db.VarChar(50)
+  Scenario_18_1             String?   @db.VarChar(50)
+  Scenario_19_1             String?   @db.VarChar(50)
+  Scenario_20_1             String?   @db.VarChar(50)
+  Scenario_21_1             String?   @db.VarChar(50)
+  Scenario_22_1             String?   @db.VarChar(50)
+  Scenario_23_1             String?   @db.VarChar(50)
+  Scenario_23_2             String?   @db.VarChar(50)
+  Scenario_24_1             String?   @db.VarChar(50)
+  Scenario_25_1             String?   @db.VarChar(50)
+  TimeStampStarted          DateTime? @db.DateTime
+  TimeStampCompleted        DateTime? @db.DateTime
+}
+
+model tblSexualHarassementVulnerabilityScenarioQuestions {
+  QuestionID       Int     @id(map: "PK_tblSexualHarassementVulnerabilityScenarioQuestions") @default(autoincrement())
+  ScenarioID       Int?
+  QuestionNo       Int?
+  UserQuestion     String? @db.Text
+  CorrectResponse  Int?
+  SeriousnessScore Int?
+}
+
+model tblSexualHarassementVulnerabilityScenarios {
+  ScenarioID      Int     @id(map: "PK_tblSexualHarassementVulnerabilityScenarios") @default(autoincrement())
+  ScenarioText    String? @db.Text
+  ScenarioNo      Int?
+  BehavioralEvent String? @db.Text
+}
+
+model tblSexualHarassementVulnerabilityTestAnswers {
+  ScenarioAnswersID  Int       @id(map: "PK_tblSexualHarassementVulnerabilityTestAnswers") @default(autoincrement())
+  CompanyName        String?   @db.VarChar(255)
+  Gender             String?   @db.VarChar(50)
+  Age                String?   @db.VarChar(50)
+  YearsAtCompany     String?   @db.VarChar(50)
+  Management         String?   @db.VarChar(50)
+  Scenario_1         String?   @db.VarChar(50)
+  Scenario_2         String?   @db.VarChar(50)
+  Scenario_3         String?   @db.VarChar(50)
+  Scenario_4         String?   @db.VarChar(50)
+  Scenario_5         String?   @db.VarChar(50)
+  Scenario_6         String?   @db.VarChar(50)
+  Scenario_7         String?   @db.VarChar(50)
+  Scenario_8         String?   @db.VarChar(50)
+  Scenario_9         String?   @db.VarChar(50)
+  Scenario_10        String?   @db.VarChar(50)
+  Scenario_11        String?   @db.VarChar(50)
+  Scenario_12        String?   @db.VarChar(50)
+  Scenario_13        String?   @db.VarChar(50)
+  Scenario_14        String?   @db.VarChar(50)
+  Scenario_15        String?   @db.VarChar(50)
+  Scenario_16        String?   @db.VarChar(50)
+  Scenario_17        String?   @db.VarChar(50)
+  Scenario_18        String?   @db.VarChar(50)
+  Scenario_19        String?   @db.VarChar(50)
+  Scenario_20        String?   @db.VarChar(50)
+  Scenario_21        String?   @db.VarChar(50)
+  Scenario_22        String?   @db.VarChar(50)
+  Scenario_23        String?   @db.VarChar(50)
+  Scenario_24        String?   @db.VarChar(50)
+  Scenario_25        String?   @db.VarChar(50)
+  Scenario_26        String?   @db.VarChar(50)
+  Scenario_27        String?   @db.VarChar(50)
+  Scenario_28        String?   @db.VarChar(50)
+  Scenario_29        String?   @db.VarChar(50)
+  TimeStampStarted   DateTime? @db.DateTime
+  TimeStampCompleted DateTime? @db.DateTime
+}
+
+model tblSexualHarassementVulnerabilityTestQuestions {
+  ScenarioID       Int      @id(map: "PK_tblScenarioQuestions") @default(autoincrement())
+  ScenarioText     String?  @db.Text
+  ScenarioNo       Int?
+  BehavioralEvent  String?  @db.Text
+  UserQuestion     String?  @db.Text
+  CorrectResponse  Int?
+  SeriousnessScore Int?
+  ScenarioQuestion Decimal? @db.Decimal(18, 2)
+}
+
+model tblTicker {
+  TickerID        Int       @id(map: "PK_tblTicker") @default(autoincrement())
+  Pair            String?   @db.VarChar(50)
+  Bid             String?   @db.VarChar(50)
+  Ask             String?   @db.VarChar(50)
+  TimeStamp       DateTime? @db.DateTime
+  SentToWebSocket DateTime? @db.DateTime
+}
+
+model tblTickerEA {
+  TickerID        Int       @id(map: "PK_tblTickerEA") @default(autoincrement())
+  Pair            String?   @db.VarChar(50)
+  Bid             String?   @db.VarChar(50)
+  Ask             String?   @db.VarChar(50)
+  TimeStamp       DateTime? @db.DateTime
+  SentToWebSocket DateTime? @db.DateTime
+}

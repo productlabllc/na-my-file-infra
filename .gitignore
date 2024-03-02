@@ -1,0 +1,27 @@
+*.js
+!jest.config.js
+*.d.ts
+node_modules
+.DS_Store
+
+cdk-exports.json
+cdk.context.json
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Parcel default cache directory
+.parcel-cache
+.env
+
+#esbuild temp directory
+.esbuild
+
+#ts build files
+/lib
+dist
+
+# ignore json files
+route-modules-oas.json
+session.json
