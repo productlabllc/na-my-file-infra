@@ -40,9 +40,9 @@ export class AccountResourcesStack extends NestedStack {
     });
 
     // Certs
-    this.wildcardCert = new acm.Certificate(this, getFormattedResourceName('sa-wildcard-cert'), {
+    this.wildcardCert = new acm.Certificate(this, getFormattedResourceName('na-wildcard-cert'), {
       domainName: `*.${domainName}`,
-      certificateName: `sa-${deploymentTarget}-wildcard-cert`,
+      certificateName: `na-${deploymentTarget}-wildcard-cert`,
       validation: acm.CertificateValidation.fromEmail(),
     });
 

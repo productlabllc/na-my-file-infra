@@ -25,7 +25,7 @@ export class RedisElasticacheStack extends NestedStack {
     // Setup
     const { deploymentTarget, awsRegion, appMetadata, getFormattedResourceName, vpc } = props;
     const orgNameAbbv = appMetadata.OrgNameAbbv.replace(/[ \.]/g, '-');
-    const fqdn = 'sentiment.trading';
+    const fqdn = 'newamerica.org';
     const resourceSuffix = `-${orgNameAbbv}-${deploymentTarget}`;
 
     // Redis Elasticache Cluster

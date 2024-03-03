@@ -1,5 +1,5 @@
 {
-  "name": "sa-infra-core",
+  "name": "na-infra-core",
   "version": "0.1.0",
   "bin": {
     "cdk": "cdk/bin/cdk.js",
@@ -23,8 +23,8 @@
     "stack-deploy-prod": "DEPLOYMENT_TARGET=prod . ./params.env && cdk deploy --debug --require-approval never ",
     "npm-login": "AWS_DEFAULT_REGION=us-east-1 npm run aws-assume-role && npm run npm-pl && AWS_PROFILE=sa npm run npm-sa",
     "npm-pl": "aws codeartifact login --tool npm --repository pl-npm --domain pl-npm --domain-owner 135700256913 --namespace @pl",
-    "npm-sa": "aws codeartifact login --tool npm --repository sa-npm --domain sa-npm --domain-owner 904816034997 --namespace @sa",
-    "aws-assume-role": "./node_modules/.bin/aws-assume-role --profile sa-org"
+    "npm-sa": "aws codeartifact login --tool npm --repository na-npm --domain na-npm --domain-owner 904816034997 --namespace @sa",
+    "aws-assume-role": "./node_modules/.bin/aws-assume-role --profile na-org"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.130",

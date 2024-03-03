@@ -34,8 +34,8 @@ export class CognitoAuthStack extends NestedStack {
       runtime: Runtime.NODEJS_18_X,
       entry: join(process.cwd(), './src/cognito-trigger-presignup.ts'),
     });
-    const userPool = new cognito.UserPool(this, getFormattedResourceName('sa-auth-userpool'), {
-      userPoolName: getFormattedResourceName('sa-auth-userpool'),
+    const userPool = new cognito.UserPool(this, getFormattedResourceName('na-auth-userpool'), {
+      userPoolName: getFormattedResourceName('na-auth-userpool'),
       signInCaseSensitive: false, // case insensitive is preferred in most situations
       selfSignUpEnabled: true,
       autoVerify: {
@@ -49,21 +49,21 @@ export class CognitoAuthStack extends NestedStack {
       },
       userVerification: {
         emailStyle: cognito.VerificationEmailStyle.CODE,
-        emailSubject: 'Verify Your Account with Sentiment Analytics Partner Portal',
-        emailBody: 'The verification code to your Sentiment Analytics Partner Portal is <b>{####}</b>.',
+        emailSubject: 'Verify Your Account with New America Partner Portal',
+        emailBody: 'The verification code to your New America Partner Portal is <b>{####}</b>.',
       },
       userInvitation: {
-        emailSubject: 'Password Reset with Sentiment Analytics Partner Portal',
-        emailBody: `Your password to access the Sentiment Analytics Partner Portal, with the username ({username}), has been reset. <br/><br/>
+        emailSubject: 'Password Reset with New America Partner Portal',
+        emailBody: `Your password to access the New America Partner Portal, with the username ({username}), has been reset. <br/><br/>
         Please use the temporary password to login: <br/>
         <b>{####}</b>`,
       },
       email: cognito.UserPoolEmail.withSES({
         sesRegion: this.region,
-        fromEmail: 'support@sentiment.trading',
-        fromName: 'Sentiment Analytics',
-        replyTo: 'support@sentiment.trading',
-        sesVerifiedDomain: 'sentiment.trading',
+        fromEmail: 'support@newamerica.org',
+        fromName: 'New America',
+        replyTo: 'support@newamerica.org',
+        sesVerifiedDomain: 'newamerica.org',
       }),
       passwordPolicy: {
         minLength: 10,
@@ -76,7 +76,7 @@ export class CognitoAuthStack extends NestedStack {
       },
     });
     const userPoolAuthDomain = `${authSubdomain}.${fqdn}`;
-    const userPoolDomain = new cognito.UserPoolDomain(this, getFormattedResourceName('sa-user-pool-domain'), {
+    const userPoolDomain = new cognito.UserPoolDomain(this, getFormattedResourceName('na-user-pool-domain'), {
       userPool,
       customDomain: {
         certificate: props.wildcardCert!,

@@ -24,7 +24,6 @@ import { InterfaceVpcEndpointAwsService, IpAddresses } from 'aws-cdk-lib/aws-ec2
 import { WebOpenApiStack } from './web-openapi.stack';
 import { AccountResourcesStack } from './account-resources.stack';
 import { WebsocketApiStack } from './websocket-api.stack';
-import { AppStack } from './app.stack';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class CdkStack extends Stack {
@@ -34,11 +33,11 @@ export class CdkStack extends Stack {
     // Setup
     const { deploymentTarget, awsRegion, appMetadata, getFormattedResourceName } = props;
     const orgNameAbbv = appMetadata.OrgNameAbbv.replace(/[ \.]/g, '-');
-    const rootDomain = 'sentiment.trading';
+    const rootDomain = 'newamerica.org';
     const resourceSuffix = `-${orgNameAbbv}-${deploymentTarget}`;
     const isProdDeployment = deploymentTarget === 'prod';
     const fqdn = isProdDeployment ? rootDomain : `${deploymentTarget.toLowerCase()}.${rootDomain}`;
-    const { EXISTING_HOSTED_ZONE_ID = '', EXISTING_HOSTED_ZONE_NAME = '', SA_WILDCARD_CERT_ARN = '' } = process.env;
+    const { EXISTING_HOSTED_ZONE_ID = '', EXISTING_HOSTED_ZONE_NAME = '', NA_WILDCARD_CERT_ARN = '' } = process.env;
 
     // Account Resources
     const accountResourcesStack = new AccountResourcesStack(this, 'AccountResourcesStack', {
@@ -100,12 +99,12 @@ export class CdkStack extends Stack {
     });
 
     // // Web UI Stack
-    const appWebUiStack = new AppWebUIStack(this, 'AppWebUIStack', {
-      ...props,
-      wildcardCert,
-      hostedZone,
-      fqdn,
-    });
+    // const appWebUiStack = new AppWebUIStack(this, 'AppWebUIStack', {
+    //   ...props,
+    //   wildcardCert,
+    //   hostedZone,
+    //   fqdn,
+    // });
 
     // // OpenAPI - Web UI Stack
     // const openApiWebUiStack = new WebOpenApiStack(this, 'WebOpenApiStack', {
@@ -115,25 +114,12 @@ export class CdkStack extends Stack {
     // });
 
     // Web UI Stack
-    const websocketApiStack = new WebsocketApiStack(this, 'WebsocketApiStack', {
-      ...props,
-      wildcardCert,
-      hostedZone,
-      fqdn,
-    });
-
-    // App Stack
-    const appStack = new AppStack(this, 'AppStack', {
-      ...props,
-      wildcardCert,
-      hostedZone,
-      fqdn,
-      additionalEnvironmentVariables: {
-        SQS_BROADCAST_MSG_QUEUE_URL: websocketApiStack.sqsBroadcastMessageQueue.queueUrl,
-      },
-      broadcastMessageSqsQueue: websocketApiStack.sqsBroadcastMessageQueue,
-    });
-
+    // const websocketApiStack = new WebsocketApiStack(this, 'WebsocketApiStack', {
+    //   ...props,
+    //   wildcardCert,
+    //   hostedZone,
+    //   fqdn,
+    // });
 
     // // SSM Parameters
     // new ssm.StringParameter(this, `ssm-vpc-main-arn${resourceSuffix}`, {

@@ -1,6 +1,6 @@
 #!/bin/bash
 export AWS_PAGER=""
-CODEARTIFACT_AWS_PROFILE=sa-central-codeartifact
+CODEARTIFACT_AWS_PROFILE=na-central-codeartifact
 CODEARTIFACT_ACCOUNT_ID=706556442003
 ROLE_TO_ASSUME=SsoUser_AssumeCodeArtifactRole
 
@@ -14,7 +14,7 @@ aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile  "$CO
 aws configure set aws_session_token "$AWS_SESSION_TOKEN" --profile  "$CODEARTIFACT_AWS_PROFILE"
 aws configure set region us-east-1 --profile "$CODEARTIFACT_AWS_PROFILE"
 
-aws codeartifact login --tool npm --repository sa-npm --domain sa-npm --domain-owner "$CODEARTIFACT_ACCOUNT_ID" --namespace @sa --profile "$CODEARTIFACT_AWS_PROFILE"
+aws codeartifact login --tool npm --repository na-npm --domain na-npm --domain-owner "$CODEARTIFACT_ACCOUNT_ID" --namespace @sa --profile "$CODEARTIFACT_AWS_PROFILE"
 
 # export AWS_PROFILE=$PROFILE
 # echo $AWS_ACCESS_KEY_ID

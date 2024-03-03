@@ -51,8 +51,8 @@ export class AppWebUIStack extends NestedStack {
     }
 
     // S3 Bucket
-    this.bucketWebApp = new s3.Bucket(this, getFormattedResourceName('bucket-sentiment-trading-web-ui'), {
-      bucketName: getFormattedResourceName('bucket-sentiment-trading-web-ui'),
+    this.bucketWebApp = new s3.Bucket(this, getFormattedResourceName('bucket-newamerica-web-ui'), {
+      bucketName: getFormattedResourceName('bucket-newamerica-web-ui'),
       autoDeleteObjects: true,
       removalPolicy: RemovalPolicy.DESTROY,
     });
@@ -68,12 +68,12 @@ export class AppWebUIStack extends NestedStack {
     const subdomainName = deploymentTarget === 'prod' ? '' : `ui.`;
     this.webappDomainName = `${subdomainName}${fqdn}`;
     const originAccessIdentity = new cloudfront.OriginAccessIdentity(this, getFormattedResourceName('cloudfront-oai'), {
-      comment: 'Cloudfront S3 Origin Access Identity for Sentiment Trading UI',
+      comment: 'Cloudfront S3 Origin Access Identity for New America UI',
     });
     this.bucketWebApp.grantRead(originAccessIdentity);
     this.cloudfrontDistributionWebApp = new cloudfront.Distribution(
       this,
-      getFormattedResourceName('cloudfront-sentiment-trading-web-ui'),
+      getFormattedResourceName('cloudfront-newamerica-web-ui'),
       {
         certificate: acmWildcardCert,
         domainNames: [this.webappDomainName],
@@ -167,13 +167,13 @@ export class AppWebUIStack extends NestedStack {
     */
 
     // SSM Parameters
-    const uiBucketParamName = `/${appMetadata.AppName}/${deploymentTarget}/sentiment-trading-web-ui-bucketname`;
-    new ssm.StringParameter(this, getFormattedResourceName('param-sentiment-trading-web-ui-bucketname'), {
+    const uiBucketParamName = `/${appMetadata.AppName}/${deploymentTarget}/newamerica-web-ui-bucketname`;
+    new ssm.StringParameter(this, getFormattedResourceName('param-newamerica-web-ui-bucketname'), {
       stringValue: this.bucketWebApp.bucketName,
       parameterName: uiBucketParamName,
     });
-    const cloudfrontDistributionParamName = `/${appMetadata.AppName}/${deploymentTarget}/sentiment-trading-web-ui-cloudfront-dist-id`;
-    new ssm.StringParameter(this, getFormattedResourceName('param-sentiment-trading-web-ui-cloudfront-dist-id'), {
+    const cloudfrontDistributionParamName = `/${appMetadata.AppName}/${deploymentTarget}/newamerica-web-ui-cloudfront-dist-id`;
+    new ssm.StringParameter(this, getFormattedResourceName('param-newamerica-web-ui-cloudfront-dist-id'), {
       stringValue: this.cloudfrontDistributionWebApp.distributionId,
       parameterName: cloudfrontDistributionParamName,
     });
