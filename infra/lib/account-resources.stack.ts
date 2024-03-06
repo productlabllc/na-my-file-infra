@@ -40,11 +40,11 @@ export class AccountResourcesStack extends NestedStack {
     });
 
     // Certs
-    this.wildcardCert = new acm.Certificate(this, getFormattedResourceName('na-wildcard-cert'), {
-      domainName: `*.${domainName}`,
-      certificateName: `na-${deploymentTarget}-wildcard-cert`,
-      validation: acm.CertificateValidation.fromEmail(),
-    });
+    // this.wildcardCert = new acm.Certificate(this, getFormattedResourceName('na-wildcard-cert'), {
+    //   domainName: `*.${domainName}`,
+    //   certificateName: `na-${deploymentTarget}-wildcard-cert`,
+    //   validation: acm.CertificateValidation.fromDns(),
+    // });
 
     // Route53 / DNS
     // const hostedZone = r53.HostedZone.fromHostedZoneAttributes(this, 'hosted-zone', {
@@ -64,10 +64,10 @@ export class AccountResourcesStack extends NestedStack {
       stringValue: this.hostedZone.zoneName,
       parameterName: `hostedzone-main-name${resourceSuffix}`,
     });
-    new ssm.StringParameter(this, `ssm-wildcard-cert-arn${resourceSuffix}`, {
-      stringValue: this.wildcardCert.certificateArn,
-      parameterName: `wildcard-cert-arn${resourceSuffix}`,
-    });
+    // new ssm.StringParameter(this, `ssm-wildcard-cert-arn${resourceSuffix}`, {
+    //   stringValue: this.wildcardCert.certificateArn,
+    //   parameterName: `wildcard-cert-arn${resourceSuffix}`,
+    // });
     new ssm.StringParameter(this, `ssm-vpc-id${resourceSuffix}`, {
       stringValue: this.vpc.vpcId,
       parameterName: `vpc-id${resourceSuffix}`,

@@ -58,11 +58,11 @@ export class AppWebUIStack extends NestedStack {
     });
 
     // ACM
-    const acmWildcardCert =
-      wildcardCert ||
-      new acm.Certificate(this, getFormattedResourceName('acm-cert'), {
-        domainName: `*.${fqdn}`,
-      });
+    // const acmWildcardCert =
+    //   wildcardCert ||
+    //   new acm.Certificate(this, getFormattedResourceName('acm-cert'), {
+    //     domainName: `*.${fqdn}`,
+    //   });
 
     // Cloudfront & WebApp
     const subdomainName = deploymentTarget === 'prod' ? '' : `ui.`;
@@ -75,8 +75,8 @@ export class AppWebUIStack extends NestedStack {
       this,
       getFormattedResourceName('cloudfront-newamerica-web-ui'),
       {
-        certificate: acmWildcardCert,
-        domainNames: [this.webappDomainName],
+        // certificate: acmWildcardCert,
+        // domainNames: [this.webappDomainName],
         defaultBehavior: {
           origin: new cloudfrontOrigins.S3Origin(this.bucketWebApp, {
             originAccessIdentity,

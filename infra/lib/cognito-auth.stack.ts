@@ -78,9 +78,12 @@ export class CognitoAuthStack extends NestedStack {
     const userPoolAuthDomain = `${authSubdomain}.${fqdn}`;
     const userPoolDomain = new cognito.UserPoolDomain(this, getFormattedResourceName('na-user-pool-domain'), {
       userPool,
-      customDomain: {
-        certificate: props.wildcardCert!,
-        domainName: userPoolAuthDomain,
+      // customDomain: {
+      //   certificate: props.wildcardCert!,
+      //   domainName: userPoolAuthDomain,
+      // },
+      cognitoDomain: {
+        domainPrefix: 'napl',
       },
     });
     const authHostCname = new r53.CnameRecord(this, getFormattedResourceName('r53-cname-record-auth'), {

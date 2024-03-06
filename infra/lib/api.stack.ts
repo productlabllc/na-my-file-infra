@@ -43,11 +43,11 @@ export class ApiStack extends NestedStack {
 
     // API Gateway
     const apiSubdomain = isProdDeployment ? `platform-api` : `platform-api-${deploymentTarget}`;
-    const apiGatewayDomainName = new apigV2Alpha.DomainName(this, `apigateway-domain-name${resourceSuffix}`, {
-      certificate: wildcardCert!,
-      domainName: `${apiSubdomain}.${fqdn}`,
-      certificateName: `wildcard-cert${resourceSuffix}`,
-    });
+    // const apiGatewayDomainName = new apigV2Alpha.DomainName(this, `apigateway-domain-name${resourceSuffix}`, {
+    //   certificate: wildcardCert!,
+    //   domainName: `${apiSubdomain}.${fqdn}`,
+    //   certificateName: `wildcard-cert${resourceSuffix}`,
+    // });
     const httpApi = new apigV2Alpha.HttpApi(this, `http-api-core${resourceSuffix}`, {
       apiName: `${orgNameAbbv}-core-api-${deploymentTarget}`,
       corsPreflight: {
