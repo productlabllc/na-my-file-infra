@@ -65,11 +65,11 @@ export class ApiStack extends NestedStack {
         // allowCredentials: true,
       },
     });
-    const dnsRecordApigatewayCname = new r53.CnameRecord(this, `r53-cname-record-apigateway${resourceSuffix}`, {
-      domainName: httpApi.apiEndpoint,
-      zone: hostedZone!,
-      recordName: apiSubdomain,
-    });
+    // const dnsRecordApigatewayCname = new r53.CnameRecord(this, `r53-cname-record-apigateway${resourceSuffix}`, {
+    //   domainName: httpApi.apiEndpoint,
+    //   zone: hostedZone!,
+    //   recordName: apiSubdomain,
+    // });
 
     // SSM Parameters
     new ssm.StringParameter(this, `ssm-httpapi-main-id${resourceSuffix}`, {

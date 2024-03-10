@@ -42,7 +42,6 @@ export class RdsPostgresqlStack extends NestedStack {
       ec2.Port.tcp(5432),
       'RDS Postgres Security Group: Any private ip address ingress.',
     );
-    // dbSecurityGroup.addIngressRule(quicksightSecurityGroup, ec2.Port.tcp(5432), 'Quicksight Access');
     const postgresInstance = isProdDeployment
       ? new rds.DatabaseCluster(this, `rds-postgres-instance${resourceSuffix}`, {
           engine: rds.DatabaseClusterEngine.auroraPostgres({
@@ -97,13 +96,13 @@ export class RdsPostgresqlStack extends NestedStack {
           securityGroups: [dbSecurityGroup],
           instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.SMALL),
         });
-    const dnsRecordPostgresCname = new r53.CnameRecord(this, `r53-cname-record-postgres${resourceSuffix}`, {
-      domainName: isProdDeployment
-        ? (postgresInstance as rds.DatabaseCluster).clusterEndpoint.hostname
-        : (postgresInstance as rds.DatabaseInstance).instanceEndpoint.hostname,
-      zone: hostedZone!,
-      recordName: `db-${deploymentTarget}`,
-    });
+    // const dnsRecordPostgresCname = new r53.CnameRecord(this, `r53-cname-record-postgres${resourceSuffix}`, {
+    //   domainName: isProdDeployment
+    //     ? (postgresInstance as rds.DatabaseCluster).clusterEndpoint.hostname
+    //     : (postgresInstance as rds.DatabaseInstance).instanceEndpoint.hostname,
+    //   zone: hostedZone!,
+    //   recordName: `db-${deploymentTarget}`,
+    // });
 
     if (deploymentTarget === 'dev') {
       // EC2 Bastion for Postgres SSH Tunnel
@@ -129,11 +128,11 @@ export class RdsPostgresqlStack extends NestedStack {
         keyName: keyPair.keyPairName,
         securityGroup: bastionSecurityGroup,
       });
-      const dnsRecordBastionHostCname = new r53.CnameRecord(this, `r53-cname-record-bastion-main`, {
-        domainName: bastionInstance.instancePublicDnsName,
-        zone: hostedZone!,
-        recordName: 'bastion',
-      });
+      // const dnsRecordBastionHostCname = new r53.CnameRecord(this, `r53-cname-record-bastion-main`, {
+      //   domainName: bastionInstance.instancePublicDnsName,
+      //   zone: hostedZone!,
+      //   recordName: 'bastion',
+      // });
       new ssm.StringParameter(this, `ssm-bastionhost-main-publicdns${resourceSuffix}`, {
         stringValue: bastionInstance.instancePublicDnsName,
         parameterName: `bastionhost-main-publicdns${resourceSuffix}`,

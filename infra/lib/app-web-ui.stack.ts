@@ -35,20 +35,19 @@ export class AppWebUIStack extends NestedStack {
     const { WEB_ACL_IP_WHITELIST } = process.env;
 
     // Hosted Zone
-
-    let hostedZone: r53.IHostedZone | undefined = props.hostedZone;
-    if (props.hostedZone) {
-      hostedZone = props.hostedZone;
-    } else if (props.existingHostedZoneId && props.existingHostedZoneName) {
-      hostedZone = r53.HostedZone.fromHostedZoneAttributes(this, getFormattedResourceName('hosted-zone'), {
-        hostedZoneId: props.existingHostedZoneId,
-        zoneName: props.existingHostedZoneName,
-      });
-    } else if (props.createNewHostedZone) {
-      hostedZone = new r53.PublicHostedZone(this, getFormattedResourceName('hosted-zone'), {
-        zoneName: fqdn,
-      });
-    }
+    // let hostedZone: r53.IHostedZone | undefined = props.hostedZone;
+    // if (props.hostedZone) {
+    //   hostedZone = props.hostedZone;
+    // } else if (props.existingHostedZoneId && props.existingHostedZoneName) {
+    //   hostedZone = r53.HostedZone.fromHostedZoneAttributes(this, getFormattedResourceName('hosted-zone'), {
+    //     hostedZoneId: props.existingHostedZoneId,
+    //     zoneName: props.existingHostedZoneName,
+    //   });
+    // } else if (props.createNewHostedZone) {
+    //   hostedZone = new r53.PublicHostedZone(this, getFormattedResourceName('hosted-zone'), {
+    //     zoneName: fqdn,
+    //   });
+    // }
 
     // S3 Bucket
     this.bucketWebApp = new s3.Bucket(this, getFormattedResourceName('bucket-newamerica-web-ui'), {
@@ -92,11 +91,11 @@ export class AppWebUIStack extends NestedStack {
         ],
       },
     );
-    const webappCnameRecord = new r53.CnameRecord(this, getFormattedResourceName('r53-cname-cfdist-web-ui'), {
-      domainName: this.cloudfrontDistributionWebApp.distributionDomainName,
-      zone: hostedZone!,
-      recordName: subdomainName.replace('.', ''),
-    });
+    // const webappCnameRecord = new r53.CnameRecord(this, getFormattedResourceName('r53-cname-cfdist-web-ui'), {
+    //   domainName: this.cloudfrontDistributionWebApp.distributionDomainName,
+    //   zone: hostedZone!,
+    //   recordName: subdomainName.replace('.', ''),
+    // });
 
     // WAF - Web ACL
     /*
@@ -177,10 +176,10 @@ export class AppWebUIStack extends NestedStack {
       stringValue: this.cloudfrontDistributionWebApp.distributionId,
       parameterName: cloudfrontDistributionParamName,
     });
-    const uiUrlParamName = `/${appMetadata.AppName}/${deploymentTarget}/partner-portal-webui-url`;
-    new ssm.StringParameter(this, getFormattedResourceName('param-partner-portal-webui-url'), {
-      stringValue: webappCnameRecord.domainName,
-      parameterName: uiUrlParamName,
-    });
+    // const uiUrlParamName = `/${appMetadata.AppName}/${deploymentTarget}/partner-portal-webui-url`;
+    // new ssm.StringParameter(this, getFormattedResourceName('param-partner-portal-webui-url'), {
+    //   stringValue: webappCnameRecord.domainName,
+    //   parameterName: uiUrlParamName,
+    // });
   }
 }

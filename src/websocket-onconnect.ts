@@ -6,26 +6,10 @@ import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb';
 const client = new DynamoDBClient({ region: process.env.AWS_REGION });
 const ddbDocClient = DynamoDBDocumentClient.from(client);
 
-const validApiKeys = [
-  '8919a7168b7fa3707d48f20847b6247e470684ad',
-];
-
 export async function handler(event: any, context: Context): Promise<APIGatewayProxyResultV2> {
   console.log(`event = ${JSON.stringify(event)}`);
   console.log(`context = ${JSON.stringify(context)}`);
   console.log(`process.env = ${JSON.stringify(process.env)}`);
-
-  const {
-    queryStringParameters: {
-      apiKey,
-    } = {},
-  } = event;
-
-  if (!validApiKeys.includes(apiKey)) {
-    return {
-      statusCode: 403,
-    };
-  }
 
   try {
     await ddbDocClient.send(
@@ -47,7 +31,7 @@ export async function handler(event: any, context: Context): Promise<APIGatewayP
   };
 }
 
-/*
+/* Example Websocket API Gateway Event Message Payload
 {
     "headers": {
         "Accept-Encoding": "gzip, deflate, br",

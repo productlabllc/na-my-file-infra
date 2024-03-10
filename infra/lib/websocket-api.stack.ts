@@ -43,12 +43,6 @@ export class WebsocketApiStack extends NestedStack {
       },
     );
 
-    // Additional DynamoDB Tables
-    const {
-      TGSR_DDB_SPOT_PRICES_TABLE_ARN = '',
-    } = process.env;
-    const ddbTgsrSpotPricesTbl = dynamodb.Table.fromTableArn(this, getFormattedResourceName('ddb-tgsr-spot-prices-tbl'), TGSR_DDB_SPOT_PRICES_TABLE_ARN);
-
     // SQS Queue as event source for broadcasting messages
     this.sqsBroadcastMessageQueue = new sqs.Queue(
       this,
@@ -100,8 +94,6 @@ export class WebsocketApiStack extends NestedStack {
         environment: {
           CONNECTIONS_TBL: this.dynamodbWebsocketConnectionTable.tableName,
           REGION: this.region,
-          TGSR_DDB_SPOT_PRICES_TABLE_NAME: ddbTgsrSpotPricesTbl.tableName,
-          TGSR_DDB_SPOT_PRICES_TABLE_REGION: ddbTgsrSpotPricesTbl.env.region,
         },
       },
     );
@@ -125,9 +117,6 @@ export class WebsocketApiStack extends NestedStack {
     this.dynamodbWebsocketConnectionTable.grantFullAccess(this.wsDisconnectHandler);
     this.dynamodbWebsocketConnectionTable.grantFullAccess(this.wsMessageHandler);
     this.dynamodbWebsocketConnectionTable.grantFullAccess(this.wsBroadcastMessageHandler);
-
-    // DynamoDB Tables granting permissions to ws lambdas
-    ddbTgsrSpotPricesTbl.grantReadWriteData(this.wsMessageHandler);
 
     // Websocket API Gateway
     this.websocketApi = new apigV2.WebSocketApi(this, getFormattedResourceName('websocketapi'), {

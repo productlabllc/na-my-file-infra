@@ -30,8 +30,8 @@ export class CognitoAuthStack extends NestedStack {
     const resourceSuffix = `-${orgNameAbbv}-${deploymentTarget}`;
 
     // Cognito
-    const preSignupLambdaFn = new lambdaNodeJs.NodejsFunction(this, getFormattedResourceName('ddn-auth-presignup-lambda-trigger'), {
-      runtime: Runtime.NODEJS_18_X,
+    const preSignupLambdaFn = new lambdaNodeJs.NodejsFunction(this, getFormattedResourceName('my-file-auth-presignup-lambda-trigger'), {
+      runtime: Runtime.NODEJS_LATEST,
       entry: join(process.cwd(), './src/cognito-trigger-presignup.ts'),
     });
     const userPool = new cognito.UserPool(this, getFormattedResourceName('na-auth-userpool'), {
@@ -49,22 +49,22 @@ export class CognitoAuthStack extends NestedStack {
       },
       userVerification: {
         emailStyle: cognito.VerificationEmailStyle.CODE,
-        emailSubject: 'Verify Your Account with New America Partner Portal',
-        emailBody: 'The verification code to your New America Partner Portal is <b>{####}</b>.',
+        emailSubject: 'Verify Your Account with the My File Application',
+        emailBody: 'The verification code to the My File Application is <b>{####}</b>.',
       },
       userInvitation: {
-        emailSubject: 'Password Reset with New America Partner Portal',
-        emailBody: `Your password to access the New America Partner Portal, with the username ({username}), has been reset. <br/><br/>
+        emailSubject: 'Password Reset with My File',
+        emailBody: `Your password to access the My File Application, with the username ({username}), has been reset. <br/><br/>
         Please use the temporary password to login: <br/>
         <b>{####}</b>`,
       },
-      email: cognito.UserPoolEmail.withSES({
-        sesRegion: this.region,
-        fromEmail: 'support@newamerica.org',
-        fromName: 'New America',
-        replyTo: 'support@newamerica.org',
-        sesVerifiedDomain: 'newamerica.org',
-      }),
+      // email: cognito.UserPoolEmail.withSES({
+      //   sesRegion: this.region,
+      //   fromEmail: 'support@newamerica.org',
+      //   fromName: 'New America',
+      //   replyTo: 'support@newamerica.org',
+      //   sesVerifiedDomain: 'newamerica.org',
+      // }),
       passwordPolicy: {
         minLength: 10,
         requireDigits: true,
@@ -86,23 +86,23 @@ export class CognitoAuthStack extends NestedStack {
         domainPrefix: 'napl',
       },
     });
-    const authHostCname = new r53.CnameRecord(this, getFormattedResourceName('r53-cname-record-auth'), {
-      domainName: userPoolDomain.cloudFrontDomainName,
-      zone: props.hostedZone!,
-      recordName: authSubdomain,
-    });
+    // const authHostCname = new r53.CnameRecord(this, getFormattedResourceName('r53-cname-record-auth'), {
+    //   domainName: userPoolDomain.cloudFrontDomainName,
+    //   zone: props.hostedZone!,
+    //   recordName: authSubdomain,
+    // });
     const userPoolClient = userPool.addClient(getFormattedResourceName('auth-user-pool-client'), {
       authFlows: {
         userPassword: true,
         userSrp: true,
       },
       oAuth: {
-        callbackUrls: [`https://${userPoolAuthDomain}`, `https://${userPoolAuthDomain}/callback`],
+        // callbackUrls: [`https://${userPoolAuthDomain}`, `https://${userPoolAuthDomain}/callback`],
         flows: {
           authorizationCodeGrant: true,
           implicitCodeGrant: true,
         },
-        logoutUrls: [`https://${userPoolAuthDomain}`],
+        // logoutUrls: [`https://${userPoolAuthDomain}`],
         scopes: [cognito.OAuthScope.OPENID, cognito.OAuthScope.EMAIL, cognito.OAuthScope.PROFILE],
       },
     });

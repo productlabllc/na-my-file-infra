@@ -51,19 +51,19 @@ export class AccountResourcesStack extends NestedStack {
     //   hostedZoneId: EXISTING_HOSTED_ZONE_ID,
     //   zoneName: EXISTING_HOSTED_ZONE_NAME,
     // });
-    this.hostedZone = new r53.PublicHostedZone(this, getFormattedResourceName('hosted-zone'), {
-      zoneName: domainName,
-    });
+    // this.hostedZone = new r53.PublicHostedZone(this, getFormattedResourceName('hosted-zone'), {
+    //   zoneName: domainName,
+    // });
 
     // // SSM Parameters
-    new ssm.StringParameter(this, `ssm-hostedzone-main-id${resourceSuffix}`, {
-      stringValue: this.hostedZone.hostedZoneId,
-      parameterName: `hostedzone-main-id${resourceSuffix}`,
-    });
-    new ssm.StringParameter(this, `ssm-hostedzone-main-name${resourceSuffix}`, {
-      stringValue: this.hostedZone.zoneName,
-      parameterName: `hostedzone-main-name${resourceSuffix}`,
-    });
+    // new ssm.StringParameter(this, `ssm-hostedzone-main-id${resourceSuffix}`, {
+    //   stringValue: this.hostedZone.hostedZoneId,
+    //   parameterName: `hostedzone-main-id${resourceSuffix}`,
+    // });
+    // new ssm.StringParameter(this, `ssm-hostedzone-main-name${resourceSuffix}`, {
+    //   stringValue: this.hostedZone.zoneName,
+    //   parameterName: `hostedzone-main-name${resourceSuffix}`,
+    // });
     // new ssm.StringParameter(this, `ssm-wildcard-cert-arn${resourceSuffix}`, {
     //   stringValue: this.wildcardCert.certificateArn,
     //   parameterName: `wildcard-cert-arn${resourceSuffix}`,

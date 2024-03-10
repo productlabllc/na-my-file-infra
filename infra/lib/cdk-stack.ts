@@ -99,36 +99,36 @@ export class CdkStack extends Stack {
     });
 
     // // Web UI Stack
-    // const appWebUiStack = new AppWebUIStack(this, 'AppWebUIStack', {
-    //   ...props,
-    //   wildcardCert,
-    //   hostedZone,
-    //   fqdn,
-    // });
+    const appWebUiStack = new AppWebUIStack(this, 'AppWebUIStack', {
+      ...props,
+      wildcardCert,
+      hostedZone,
+      fqdn,
+    });
 
     // // OpenAPI - Web UI Stack
-    // const openApiWebUiStack = new WebOpenApiStack(this, 'WebOpenApiStack', {
-    //   ...props,
-    //   wildcardCert,
-    //   hostedZone,
-    // });
+    const openApiWebUiStack = new WebOpenApiStack(this, 'WebOpenApiStack', {
+      ...props,
+      wildcardCert,
+      hostedZone,
+    });
 
-    // Web UI Stack
-    // const websocketApiStack = new WebsocketApiStack(this, 'WebsocketApiStack', {
-    //   ...props,
-    //   wildcardCert,
-    //   hostedZone,
-    //   fqdn,
-    // });
+    // Websocket API Stack
+    const websocketApiStack = new WebsocketApiStack(this, 'WebsocketApiStack', {
+      ...props,
+      wildcardCert,
+      hostedZone,
+      fqdn,
+    });
 
     // // SSM Parameters
-    // new ssm.StringParameter(this, `ssm-vpc-main-arn${resourceSuffix}`, {
-    //   stringValue: vpc.vpcArn,
-    //   parameterName: `vpc-main-arn${resourceSuffix}`,
-    // });
-    // new ssm.StringParameter(this, `ssm-vpc-main-id${resourceSuffix}`, {
-    //   stringValue: vpc.vpcId,
-    //   parameterName: `vpc-main-id${resourceSuffix}`,
-    // });
+    new ssm.StringParameter(this, `ssm-vpc-main-arn${resourceSuffix}`, {
+      stringValue: vpc.vpcArn,
+      parameterName: `vpc-main-arn${resourceSuffix}`,
+    });
+    new ssm.StringParameter(this, `ssm-vpc-main-id${resourceSuffix}`, {
+      stringValue: vpc.vpcId,
+      parameterName: `vpc-main-id${resourceSuffix}`,
+    });
   }
 }

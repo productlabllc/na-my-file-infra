@@ -33,7 +33,6 @@ export class WebOpenApiStack extends NestedStack {
     });
 
     // Cloudfront & WebApp
-    /*
     const subdomainRecordName = getFormattedResourceName('openapi');
     this.webOpenApiDomainName = `${subdomainRecordName}.${fqdn}`;
     this.cloudfrontDistributionWebOpenApi = new cloudfront.Distribution(this, getFormattedResourceName('cloudfront-web-openapi'), {
@@ -45,12 +44,11 @@ export class WebOpenApiStack extends NestedStack {
       defaultRootObject: 'index.html',
       priceClass: cloudfront.PriceClass.PRICE_CLASS_100,
     });
-    const webappCnameRecord = new r53.CnameRecord(this, getFormattedResourceName('r53-cname-cfdist-web-openapi'), {
-      domainName: this.cloudfrontDistributionWebOpenApi.distributionDomainName,
-      zone: hostedZone!,
-      recordName: subdomainRecordName,
-    });
-    */
+    // const webappCnameRecord = new r53.CnameRecord(this, getFormattedResourceName('r53-cname-cfdist-web-openapi'), {
+    //   domainName: this.cloudfrontDistributionWebOpenApi.distributionDomainName,
+    //   zone: hostedZone!,
+    //   recordName: subdomainRecordName,
+    // });
 
     // SSM Parameters
     new ssm.StringParameter(this, getFormattedResourceName('param-web-openapi-bucketname'), {
