@@ -16,7 +16,7 @@ const main = () => {
   const fqdn = process.env.FQDN!;
   const resourceSuffix = `-${orgNameAbbv}-${deploymentTarget}`;
 
-  const getFormattedResourceName = (name: string) => `${appTags.Name}-${name}-${deploymentTarget}`.toLowerCase();
+  const getFormattedResourceName = (name: string) => `${appTags.AppName}-${name}-${deploymentTarget}`.toLowerCase();
 
   const mainStack = new CdkStack(app, appTags.StackName, {
     env: {
