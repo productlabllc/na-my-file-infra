@@ -6,6 +6,7 @@ import {
   aws_sqs as sqs,
 } from 'aws-cdk-lib';
 import * as apigV2 from 'aws-cdk-lib/aws-apigatewayv2';
+import * as cdk from '@aws-cdk/core';
 import * as apigV2Authorizers from 'aws-cdk-lib/aws-apigatewayv2-authorizers';
 import * as apigV2Integrations from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import { Construct } from 'constructs';
@@ -40,6 +41,7 @@ export class WebsocketApiStack extends NestedStack {
         readCapacity: 2,
         writeCapacity: 1,
         timeToLiveAttribute: 'ttl',
+        removalPolicy: cdk.RemovalPolicy.DESTROY,
       },
     );
 
@@ -62,15 +64,19 @@ export class WebsocketApiStack extends NestedStack {
         REGION: this.region,
       },
     });
-    const wsConnectAuthorizerHandler = new lambdaNodeJS.NodejsFunction(this, getFormattedResourceName('ws-connect-authorizer-handler'), {
-      functionName: getFormattedResourceName('ws-connect-authorizer-handler'),
-      entry: 'src/websocket-onconnect-authorizer.ts',
-      vpc,
-      environment: {
-        CONNECTIONS_TBL: this.dynamodbWebsocketConnectionTable.tableName,
-        REGION: this.region,
+    const wsConnectAuthorizerHandler = new lambdaNodeJS.NodejsFunction(
+      this,
+      getFormattedResourceName('ws-connect-authorizer-handler'),
+      {
+        functionName: getFormattedResourceName('ws-connect-authorizer-handler'),
+        entry: 'src/websocket-onconnect-authorizer.ts',
+        vpc,
+        environment: {
+          CONNECTIONS_TBL: this.dynamodbWebsocketConnectionTable.tableName,
+          REGION: this.region,
+        },
       },
-    });
+    );
     this.wsDisconnectHandler = new lambdaNodeJS.NodejsFunction(
       this,
       getFormattedResourceName('ws-disconnect-handler'),

@@ -8,6 +8,7 @@ import {
   NestedStack,
   NestedStackProps,
 } from 'aws-cdk-lib';
+import * as cdk from '@aws-cdk/core';
 import { KeyPair } from 'cdk-ec2-key-pair';
 import { Construct } from 'constructs';
 import { AppMetadata } from '../config';
@@ -30,10 +31,14 @@ export class CognitoAuthStack extends NestedStack {
     const resourceSuffix = `-${orgNameAbbv}-${deploymentTarget}`;
 
     // Cognito
-    const preSignupLambdaFn = new lambdaNodeJs.NodejsFunction(this, getFormattedResourceName('my-file-auth-presignup-lambda-trigger'), {
-      runtime: Runtime.NODEJS_LATEST,
-      entry: join(process.cwd(), './src/cognito-trigger-presignup.ts'),
-    });
+    const preSignupLambdaFn = new lambdaNodeJs.NodejsFunction(
+      this,
+      getFormattedResourceName('my-file-auth-presignup-lambda-trigger'),
+      {
+        runtime: Runtime.NODEJS_LATEST,
+        entry: join(process.cwd(), './src/cognito-trigger-presignup.ts'),
+      },
+    );
     const userPool = new cognito.UserPool(this, getFormattedResourceName('na-auth-userpool'), {
       userPoolName: getFormattedResourceName('na-auth-userpool'),
       signInCaseSensitive: false, // case insensitive is preferred in most situations
@@ -74,6 +79,7 @@ export class CognitoAuthStack extends NestedStack {
       lambdaTriggers: {
         preSignUp: preSignupLambdaFn,
       },
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
     const userPoolAuthDomain = `${authSubdomain}.${fqdn}`;
     const userPoolDomain = new cognito.UserPoolDomain(this, getFormattedResourceName('na-user-pool-domain'), {
@@ -83,7 +89,7 @@ export class CognitoAuthStack extends NestedStack {
       //   domainName: userPoolAuthDomain,
       // },
       cognitoDomain: {
-        domainPrefix: 'napl',
+        domainPrefix: 'na-my-file-auth', // currently set to this domain prefix
       },
     });
     // const authHostCname = new r53.CnameRecord(this, getFormattedResourceName('r53-cname-record-auth'), {
