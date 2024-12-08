@@ -37,7 +37,7 @@ export class CdkStack extends Stack {
     const resourceSuffix = `-${orgNameAbbv}-${deploymentTarget}`;
     const isProdDeployment = deploymentTarget === 'prod';
     const fqdn = isProdDeployment ? rootDomain : `${deploymentTarget.toLowerCase()}.${rootDomain}`;
-    const { EXISTING_HOSTED_ZONE_ID = '', EXISTING_HOSTED_ZONE_NAME = '', NA_WILDCARD_CERT_ARN = '' } = process.env;
+    const { EXISTING_HOSTED_ZONE_ID = '', EXISTING_HOSTED_ZONE_NAME = '', NA_WILDCARD_CERT_ARN = '', VPC_ID = '' } = process.env;
 
     // Account Resources
     const accountResourcesStack = new AccountResourcesStack(this, 'AccountResourcesStack', {
@@ -46,6 +46,7 @@ export class CdkStack extends Stack {
       fqdn,
       resourceSuffix,
       isProdDeployment,
+      existingVpcId: VPC_ID,
     });
     const { vpc, hostedZone, wildcardCert } = accountResourcesStack;
 

@@ -45,7 +45,7 @@ export class RdsPostgresqlStack extends NestedStack {
     const postgresInstance = isProdDeployment
       ? new rds.DatabaseCluster(this, `rds-postgres-instance${resourceSuffix}`, {
           engine: rds.DatabaseClusterEngine.auroraPostgres({
-            version: rds.AuroraPostgresEngineVersion.VER_15_2,
+            version: rds.AuroraPostgresEngineVersion.VER_17_2,
           }),
           writer: rds.ClusterInstance.provisioned('writer', {
             instanceType: ec2.InstanceType.of(ec2.InstanceClass.R6G, ec2.InstanceSize.LARGE),
@@ -83,7 +83,7 @@ export class RdsPostgresqlStack extends NestedStack {
         })
       : new rds.DatabaseInstance(this, `rds-postgres-instance${resourceSuffix}`, {
           engine: rds.DatabaseInstanceEngine.postgres({
-            version: rds.PostgresEngineVersion.VER_15_2,
+            version: rds.PostgresEngineVersion.VER_17_2,
           }),
           vpc: vpc!,
           vpcSubnets: {

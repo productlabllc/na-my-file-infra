@@ -35,9 +35,13 @@ export class AccountResourcesStack extends NestedStack {
 
     // Vpc
     const vpcName = getFormattedResourceName('vpc-main');
-    this.vpc = new ec2.Vpc(this, vpcName, {
-      vpcName,
-    });
+    this.vpc = props.existingVpcId ?
+      ec2.Vpc.fromLookup(this, vpcName, {
+        vpcId: props.existingVpcId,
+      })
+      : new ec2.Vpc(this, vpcName, {
+        vpcName,
+      });
 
     // Certs
     // this.wildcardCert = new acm.Certificate(this, getFormattedResourceName('na-wildcard-cert'), {
