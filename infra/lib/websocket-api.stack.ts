@@ -4,15 +4,16 @@ import {
   aws_dynamodb as dynamodb,
   aws_lambda_nodejs as lambdaNodeJS,
   aws_sqs as sqs,
+  RemovalPolicy,
 } from 'aws-cdk-lib';
 import * as apigV2 from 'aws-cdk-lib/aws-apigatewayv2';
-import * as cdk from '@aws-cdk/core';
 import * as apigV2Authorizers from 'aws-cdk-lib/aws-apigatewayv2-authorizers';
 import * as apigV2Integrations from 'aws-cdk-lib/aws-apigatewayv2-integrations';
 import { Construct } from 'constructs';
 import { ExtendedNestedStackProps, ExtendedStackProps } from './stack-interfaces';
 import { Effect, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 import { SqsEventSource } from 'aws-cdk-lib/aws-lambda-event-sources';
+import { Runtime } from 'aws-cdk-lib/aws-lambda';
 
 export class WebsocketApiStack extends NestedStack {
   public readonly apiGatewayDomainName: apigV2.DomainName;
@@ -41,7 +42,7 @@ export class WebsocketApiStack extends NestedStack {
         readCapacity: 2,
         writeCapacity: 1,
         timeToLiveAttribute: 'ttl',
-        removalPolicy: cdk.RemovalPolicy.DESTROY,
+        removalPolicy: RemovalPolicy.DESTROY,
       },
     );
 
@@ -75,6 +76,7 @@ export class WebsocketApiStack extends NestedStack {
           CONNECTIONS_TBL: this.dynamodbWebsocketConnectionTable.tableName,
           REGION: this.region,
         },
+        runtime: Runtime.NODEJS_LATEST,
       },
     );
     this.wsDisconnectHandler = new lambdaNodeJS.NodejsFunction(
@@ -88,6 +90,7 @@ export class WebsocketApiStack extends NestedStack {
           CONNECTIONS_TBL: this.dynamodbWebsocketConnectionTable.tableName,
           REGION: this.region,
         },
+        runtime: Runtime.NODEJS_LATEST,
       },
     );
     this.wsMessageHandler = new lambdaNodeJS.NodejsFunction(
@@ -101,6 +104,7 @@ export class WebsocketApiStack extends NestedStack {
           CONNECTIONS_TBL: this.dynamodbWebsocketConnectionTable.tableName,
           REGION: this.region,
         },
+        runtime: Runtime.NODEJS_LATEST,
       },
     );
     this.wsBroadcastMessageHandler = new lambdaNodeJS.NodejsFunction(
@@ -116,6 +120,7 @@ export class WebsocketApiStack extends NestedStack {
           QUEUE_URL: this.sqsBroadcastMessageQueue.queueUrl,
         },
         events: [new SqsEventSource(this.sqsBroadcastMessageQueue)],
+        runtime: Runtime.NODEJS_LATEST,
       },
     );
     this.sqsBroadcastMessageQueue.grantConsumeMessages(this.wsBroadcastMessageHandler);

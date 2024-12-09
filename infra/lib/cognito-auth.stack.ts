@@ -7,8 +7,8 @@ import {
   aws_lambda_nodejs as lambdaNodeJs,
   NestedStack,
   NestedStackProps,
+  RemovalPolicy,
 } from 'aws-cdk-lib';
-import * as cdk from '@aws-cdk/core';
 import { KeyPair } from 'cdk-ec2-key-pair';
 import { Construct } from 'constructs';
 import { AppMetadata } from '../config';
@@ -79,7 +79,7 @@ export class CognitoAuthStack extends NestedStack {
       lambdaTriggers: {
         preSignUp: preSignupLambdaFn,
       },
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      removalPolicy: RemovalPolicy.DESTROY,
     });
     const userPoolAuthDomain = `${authSubdomain}.${fqdn}`;
     const userPoolDomain = new cognito.UserPoolDomain(this, getFormattedResourceName('na-user-pool-domain'), {
