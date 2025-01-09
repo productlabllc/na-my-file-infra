@@ -39,10 +39,6 @@ export class CdkStack extends Stack {
     const fqdn = isProdDeployment ? rootDomain : `${deploymentTarget.toLowerCase()}.${rootDomain}`;
     const { EXISTING_HOSTED_ZONE_ID = '', EXISTING_HOSTED_ZONE_NAME = '', NA_WILDCARD_CERT_ARN = '', VPC_ID = '' } = process.env;
 
-    const assetsBucket = new s3.Bucket(this, getFormattedResourceName('assets-bucket'), {
-      bucketName: getFormattedResourceName('assets-bucket'),
-    });
-
     // Account Resources
     const accountResourcesStack = new AccountResourcesStack(this, 'AccountResourcesStack', {
       ...props,
@@ -134,10 +130,6 @@ export class CdkStack extends Stack {
     new ssm.StringParameter(this, `ssm-vpc-main-id${resourceSuffix}`, {
       stringValue: vpc.vpcId,
       parameterName: `vpc-main-id${resourceSuffix}`,
-    });
-    new ssm.StringParameter(this, `ssm-assets-bucket-name${resourceSuffix}`, {
-      stringValue: assetsBucket.bucketName,
-      parameterName: `assets-bucket-name${resourceSuffix}`,
     });
   }
 }
