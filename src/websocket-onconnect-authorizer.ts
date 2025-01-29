@@ -4,8 +4,8 @@ export async function handler(event: any, context: Context) {
   console.log(`event = ${JSON.stringify(event)}`);
   console.log(`context = ${JSON.stringify(context)}`);
 
-  // A simple REQUEST authorizer example to demonstrate how to use request 
-  // parameters to allow or deny a request. In this example, a request is  
+  // A simple REQUEST authorizer example to demonstrate how to use request
+  // parameters to allow or deny a request. In this example, a request is
   // authorized if the client-supplied HeaderAuth1 header and QueryString1 query parameter
   // in the request context match the specified values of
   // of 'headerValue1' and 'queryValue1' respectively.
@@ -25,7 +25,7 @@ export async function handler(event: any, context: Context) {
   const stage = apiGatewayArnTmp[1];
   const route = apiGatewayArnTmp[2];
 
-  // Perform authorization to return the Allow policy for correct parameters and 
+  // Perform authorization to return the Allow policy for correct parameters and
   // the 'Unauthorized' error, otherwise.
   const authResponse = {};
   const condition: any = {};
@@ -58,17 +58,17 @@ const generatePolicy = function (principalId: string, effect: string, resource: 
   }
   // Optional output with custom properties of the String, Number or Boolean type.
   authResponse.context = {
-    "stringKey": "stringval",
-    "numberKey": 123,
-    "booleanKey": true
+    stringKey: 'stringval',
+    numberKey: 123,
+    booleanKey: true,
   };
   return authResponse;
-}
+};
 
 const generateAllow = function (principalId: string, resource: string) {
   return generatePolicy(principalId, 'Allow', resource);
-}
+};
 
 const generateDeny = function (principalId: string, resource: string) {
   return generatePolicy(principalId, 'Deny', resource);
-}
+};
