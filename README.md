@@ -1,10 +1,11 @@
-# City Housing Assistance Platform - Infrastructure
+# My File - Infrastructure
 
-This repository contains the infrastructure as code (IaC) for deploying and managing the City Housing Assistance Platform. The platform is designed to help city governments streamline their housing and shelter assistance programs through secure document management, case workflows, and application processing.
+This repository contains the infrastructure as code (IaC) for deploying and managing My File. The platform provides secure document storage and sharing capabilities that can be customized for various organizational needs.
 
 ## Overview
 
 This infrastructure project is part of a larger ecosystem that includes:
+
 - Infrastructure (this repository)
 - API Service (separate repository)
 - User Interface (separate repository)
@@ -40,28 +41,33 @@ The infrastructure is built using AWS CDK and provides the foundation for secure
 ## Getting Started
 
 1. Clone the repository:
+
 ```bash
 git clone [repository-url]
 cd [repository-name]
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Copy the parameter template and configure your environment:
+
 ```bash
 cp params.env.example params.env
 # Edit params.env with your configuration
 ```
 
 4. Bootstrap your AWS environment (if not already done):
+
 ```bash
 cdk bootstrap
 ```
 
 5. Deploy the infrastructure:
+
 ```bash
 cdk deploy --all
 ```
@@ -82,43 +88,51 @@ The infrastructure is organized into several nested stacks within the main CDK s
 ### Key Components by Stack
 
 #### Account Resources Stack
+
 - VPC configuration
 - Network security groups
 - Shared SSM parameters
 
 #### RDS PostgreSQL Stack
+
 - Production: Aurora PostgreSQL cluster with read replicas
 - Non-Production: Single instance PostgreSQL
 - Bastion host (in development environment)
 - Security groups and subnet configurations
 
 #### Redis Elasticache Stack
+
 - Redis cluster configuration
 - Security groups
 - Subnet groups
 
 #### API Stack
+
 - HTTP API Gateway
 - API domain configuration
 - CORS settings
 
 #### Cognito Auth Stack
+
 - User pool configuration
 - Authentication triggers
 - OAuth/OpenID settings
 - Custom domain setup
 
 #### App Web UI Stack
+
 - S3 bucket for static assets
 - CloudFront distribution
 - WAF configuration (optional)
 
 #### Web OpenAPI Stack
+
 - S3 bucket for API documentation
 - CloudFront distribution
 - Domain configuration
 
 #### Websocket API Stack
+
 - WebSocket API Gateway
 - DynamoDB table for connection management
 - Lambda handlers for WebSocket events
@@ -145,35 +159,16 @@ Each environment can be configured separately using environment-specific paramet
 ## Monitoring and Maintenance
 
 The infrastructure includes:
+
 - CloudWatch dashboards
 - Automated backups
 - Alert configurations
 - Resource monitoring
 
-## Contributing
+## Related Documentation
 
-We welcome contributions from the community. Please read our contributing guidelines before submitting pull requests.
-
-## Companion Projects
-
-- API Service Repository: [Link to API repository]
-- UI Repository: [Link to UI repository]
-
-## Support and Documentation
-
-For detailed technical documentation and support:
-- [Link to technical documentation]
-- [Link to support resources]
-- [Link to deployment guides]
+- [Main Documentation](https://github.com/newamericafoundation/na-my-file/index.md)
 
 ## License
 
-MIT
-
-## Security
-
-For security concerns or vulnerabilities, please contact [security contact information].
-
-## Acknowledgments
-
-This project is made possible through the collaboration of various city governments and technical contributors who share the vision of improving housing assistance services through technology.
+MIT License
